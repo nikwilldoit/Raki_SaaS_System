@@ -1,0 +1,48 @@
+/* src/Components/staff/ManageStaff.css */
+.staff-page {
+    min-height: 100vh;
+    background: #f5f5f5;
+}
+
+.staff-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.staff-content h2 {
+    margin-bottom: 20px;
+}
+
+.staff-error {
+    color: #c0392b;
+    margin-bottom: 16px;
+}
+
+.staff-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.staff-table th,
+.staff-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.staff-table th {
+    background: #fafafa;
+    font-weight: 600;
+}
+
+.staff-edit-btn {
+    padding: 4px 12px;
+    border-radius: 16px;
+    border: none;
+    background: #e1d4ff;
+    cursor: pointer;
+}

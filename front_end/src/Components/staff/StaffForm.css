@@ -1,0 +1,66 @@
+.staff-form-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
+.staff-form-modal {
+    background: #fff;
+    padding: 24px 32px;
+    border-radius: 12px;
+    min-width: 400px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.staff-form-modal h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.staff-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.staff-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.staff-form input,
+.staff-form select {
+    margin-top: 4px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.staff-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.staff-form-actions button {
+    padding: 6px 16px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.staff-form-actions button[type="submit"] {
+    background: #e1d4ff;
+}
+
+.staff-form-error {
+    color: #c0392b;
+    font-size: 13px;
+    margin-bottom: 8px;
+}

@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.7'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.raki'
+version = '0.0.1-SNAPSHOT'
+description = 'POS project as SaaS'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(23)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+//clear conflicting logging
+configurations.configureEach {
+    exclude group: 'ch.qos.logback', module: 'logback-classic'
+    exclude group: 'ch.qos.logback', module: 'logback-core'
+    exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j' //not overlap log4j to slf4j
+}
+
+dependencies {
+    // Spring starters
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // Log4j2 (instead of default logging)
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // Devtools & MySQL
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // H2 (for testing)
+    testImplementation 'com.h2database:h2'
+
+    // Spring Boot test (without default logging)
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    // (Not Necessary) explicit Log4j2 test deps if you want specific version
+    testImplementation 'org.apache.logging.log4j:log4j-api:2.24.3'
+    testImplementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+
+    // JUnit launcher
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "failed", "skipped", "standard_out", "standard_error"
+        showStandardStreams = true
+    }
+}

@@ -1,0 +1,2090 @@
+openapi: 3.0.3
+info:
+  title: RAKI API 
+  version: "1.0.0-impl"
+servers:
+  - url: https://api.raki.example.com/v1
+tags:
+  - name: Auth
+  - name: Merchants
+  - name: Branches
+  - name: Employees
+  - name: Roles
+  - name: Permissions
+  - name: Products
+  - name: ProductTypes
+  - name: IngredientCategories
+  - name: Ingredients
+  - name: Catalogue
+  - name: Orders
+  - name: OrderItems
+  - name: Payments
+  - name: PaymentSplits
+  - name: Refunds
+  - name: Discounts
+  - name: Taxes
+  - name: Services
+  - name: Schedules
+  - name: Reservations
+  - name: Deposits
+  - name: CancellationFees
+  - name: Webhooks
+security:
+  - bearerAuth: []
+paths:
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login with email/password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, format: password }
+      responses:
+        '200':
+          description: Tokens
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthTokens' }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      summary: Refresh access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refreshToken]
+              properties:
+                refreshToken: { type: string }
+      responses:
+        '200':
+          description: Tokens
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthTokens' }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+
+  /merchants:
+    post:
+      tags: [Merchants]
+      summary: Create merchant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MerchantCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Merchant' }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Merchants]
+      summary: Get merchant
+      responses:
+        '200': { description: Merchant, content: { application/json: { schema: { $ref: '#/components/schemas/Merchant' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [Merchants]
+      summary: Update merchant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MerchantUpdate' }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Merchant' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Merchants]
+      summary: Delete merchant
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+
+  /merchants/{merchantId}/branches:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Branches]
+      summary: List branches
+      responses:
+        '200':
+          description: Branches
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Branch' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [Branches]
+      summary: Create branch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/BranchCreate' }
+      responses:
+        '201':
+          description: Created
+          content: { application/json: { schema: { $ref: '#/components/schemas/Branch' } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/branches/{branchId}:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' }, { $ref: '#/components/parameters/BranchId' } ]
+    get:
+      tags: [Branches]
+      summary: Get branch
+      responses:
+        '200': { description: Branch, content: { application/json: { schema: { $ref: '#/components/schemas/Branch' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [Branches]
+      summary: Update branch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/BranchUpdate' }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Branch' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Branches]
+      summary: Delete branch
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+
+  /merchants/{merchantId}/employees:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Employees]
+      summary: List employees
+      responses:
+        '200':
+          description: Employees
+          content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Employee' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [Employees]
+      summary: Create employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EmployeeCreate' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Employee' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/employees/{userId}:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' }, { $ref: '#/components/parameters/UserId' } ]
+    get:
+      tags: [Employees]
+      summary: Get employee
+      responses:
+        '200': { description: Employee, content: { application/json: { schema: { $ref: '#/components/schemas/Employee' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [Employees]
+      summary: Update employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EmployeeUpdate' }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Employee' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Employees]
+      summary: Delete employee
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+
+  /merchants/{merchantId}/employees/{userId}/roles:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' }, { $ref: '#/components/parameters/UserId' } ]
+    get:
+      tags: [Employees]
+      summary: List employee role
+      responses:
+        '200': { description: Role, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Role' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [Employees]
+      summary: Assign role to employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roleId]
+              properties:
+                roleId: { type: integer, format: int64 }
+      responses:
+        '204': { description: Role assigned }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+
+  /roles:
+    get:
+      tags: [Roles]
+      summary: List roles
+      responses:
+        '200': { description: Roles, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Role' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+  
+  /roles/{roleId}/permissions:
+    parameters: [ { $ref: '#/components/parameters/RoleId' } ]
+    get:
+      tags: [Roles]
+      summary: List role permissions
+      responses:
+        '200': { description: Permissions, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Permission' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+  /permissions:
+    get:
+      tags: [Permissions]
+      summary: List permissions
+      responses:
+        '200': { description: Permissions, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Permission' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+
+  /merchants/{merchantId}/product-types:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [ProductTypes]
+      summary: List product types
+      responses:
+        '200': { description: Types, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/ProductType' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [ProductTypes]
+      summary: Create product type
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProductTypeCreate' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/ProductType' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/product-types/{typeId}:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' }, { $ref: '#/components/parameters/TypeId' } ]
+    get:
+      tags: [ProductTypes]
+      summary: Get product type
+      responses:
+        '200': { description: Type, content: { application/json: { schema: { $ref: '#/components/schemas/ProductType' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [ProductTypes]
+      summary: Update product type
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProductTypeUpdate' }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/ProductType' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [ProductTypes]
+      summary: Delete product type
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+
+  /merchants/{merchantId}/products:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Products]
+      summary: List products
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string, enum: [active, inactive, out_of_stock] }
+        - in: query
+          name: q
+          schema: { type: string }
+      responses:
+        '200':
+          description: Products
+          content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Product' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [Products]
+      summary: Create product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProductCreate' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Product' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/products/{productId}:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' }, { $ref: '#/components/parameters/ProductId' } ]
+    get:
+      tags: [Products]
+      summary: Get product
+      responses:
+        '200': { description: Product, content: { application/json: { schema: { $ref: '#/components/schemas/Product' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [Products]
+      summary: Update product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProductUpdate' }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Product' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Products]
+      summary: Delete product
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+
+  /merchants/{merchantId}/ingredient-categories:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [IngredientCategories]
+      summary: List ingredient categories
+      parameters:
+        - in: query
+          name: productId
+          schema: { type: integer, format: int64 }
+      responses:
+        '200':
+          description: Categories
+          content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/IngredientCategory' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [IngredientCategories]
+      summary: Create ingredient category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/IngredientCategoryCreate' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/IngredientCategory' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/ingredient-categories/{categoryId}:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' }, { $ref: '#/components/parameters/CategoryId' } ]
+    get:
+      tags: [IngredientCategories]
+      summary: Get ingredient category
+      responses:
+        '200': { description: Category, content: { application/json: { schema: { $ref: '#/components/schemas/IngredientCategory' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [IngredientCategories]
+      summary: Update ingredient category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/IngredientCategoryUpdate' }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/IngredientCategory' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/ingredient-categories/{categoryId}/ingredients:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' }, { $ref: '#/components/parameters/CategoryId' } ]
+    get:
+      tags: [Ingredients]
+      summary: List ingredients in category
+      responses:
+        '200': { description: Ingredients, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Ingredient' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    post:
+      tags: [Ingredients]
+      summary: Create ingredient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/IngredientCreate' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Ingredient' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  #Products addition are performed through product endpoints
+  /merchants/{merchantId}/catalogue:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Catalogue]
+      summary: List catalogue entries (stock/status per product)
+      responses:
+        '200':
+          description: Catalogue
+          content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/CatalogueItem' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [Catalogue]
+      summary: Upsert catalogue entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CatalogueItemUpsert' }
+      responses:
+        '200': { description: Upserted, content: { application/json: { schema: { $ref: '#/components/schemas/CatalogueItem' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/orders:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Orders]
+      summary: List orders
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string, enum: [open, closed, cancelled, refunded] }
+      responses:
+        '200': { description: Orders, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Order' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [Orders]
+      summary: Create order (open)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/OrderCreate' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Order' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/orders/{orderId}:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' }, { $ref: '#/components/parameters/OrderId' } ]
+    get:
+      tags: [Orders]
+      summary: Get order with computed totals
+      responses:
+        '200': { description: Order, content: { application/json: { schema: { $ref: '#/components/schemas/Order' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [Orders]
+      summary: Update order (open only) — add/remove items, set discount, requests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/OrderUpdate' }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Order' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Orders]
+      summary: Cancel order (open only)
+      responses:
+        '204': { description: Cancelled }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+
+  /merchants/{merchantId}/orders/{orderId}/items:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/OrderId' }
+
+    post:
+      tags: [OrderItems]
+      summary: Add item to order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderItemCreate'
+      responses:
+        '201':
+          description: Item added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    get:
+      tags: [OrderItems]
+      summary: Get all items for a specific order
+      responses:
+        '200':
+          description: List of order items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderItem'
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+  /merchants/{merchantId}/orders/{orderId}/items/{orderItemId}:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/OrderId' }
+      - in: path
+        name: orderItemId
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The ID of the order item
+
+    patch:
+      tags: [OrderItems]
+      summary: Update an existing item in an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  minimum: 1
+                payment_status:
+                  type: string
+                  enum: [Unpaid, Paid]
+      responses:
+        '200':
+          description: Item updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderItem'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    delete:
+      tags: [OrderItems]
+      summary: Delete an item from an order
+      responses:
+        '204': { description: Item deleted successfully }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+  /merchants/{merchantId}/orders/{orderId}/payments:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/OrderId' }
+
+    post:
+      tags: [Payments]
+      summary: Record payment (supports split checks via payment_splits)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentCreate'
+      responses:
+        '201':
+          description: Payment recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    get:
+      tags: [Payments]
+      summary: Get all payments for a specific order
+      responses:
+        '200':
+          description: List of payments for the order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Payment'
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+  /merchants/{merchantId}/payments/{paymentId}/splits:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/PaymentId' }
+
+    post:
+      tags: [PaymentSplits]
+      summary: Add a split to a payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentSplitCreate'
+      responses:
+        '201':
+          description: Split created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentSplit'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    get:
+      tags: [PaymentSplits]
+      summary: Get all splits for a specific payment
+      responses:
+        '200':
+          description: List of payment splits
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentSplit'
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+  /merchants/{merchantId}/payments/{paymentId}/splits/{splitId}:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/PaymentId' }
+      - in: path
+        name: splitId
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The ID of the payment split
+
+    patch:
+      tags: [PaymentSplits]
+      summary: Update a payment split
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  multipleOf: 0.01
+                method:
+                  type: string
+                  description: Payment method (cash, card, gift_card)
+                tip:
+                  type: number
+                  multipleOf: 0.01
+      responses:
+        '200':
+          description: Payment split updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentSplit'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    delete:
+      tags: [PaymentSplits]
+      summary: Delete a payment split
+      responses:
+        '204': { description: Payment split deleted successfully }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+
+  /merchants/{merchantId}/orders/{orderId}/refunds:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/OrderId' }
+
+    post:
+      tags: [Refunds]
+      summary: Create refund (full or partial)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundCreate'
+      responses:
+        '201':
+          description: Refund created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    get:
+      tags: [Refunds]
+      summary: Get all refunds for a specific order
+      responses:
+        '200':
+          description: List of refunds for the order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Refund'
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+  /merchants/{merchantId}/discounts:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Discounts]
+      summary: List discounts
+      responses:
+        '200':
+          description: Discounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Discount' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+
+    post:
+      tags: [Discounts]
+      summary: Create discount (scoped to merchant in path)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DiscountCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Discount' }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/discounts/{discountId}:
+    parameters:
+      - $ref: '#/components/parameters/MerchantId'
+      - $ref: '#/components/parameters/DiscountId'
+    get:
+      tags: [Discounts]
+      summary: Get discount
+      responses:
+        '200': { description: Discount, content: { application/json: { schema: { $ref: '#/components/schemas/Discount' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+    patch:
+      tags: [Discounts]
+      summary: Update discount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DiscountUpdate' }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Discount' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }     # locked/used discounts, invalid transitions
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    delete:
+      tags: [Discounts]
+      summary: Delete discount
+      description: Prefer status=inactive when referenced by historical/closed orders; return 409 if hard delete is unsafe.
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+  /merchants/{merchantId}/tax-rates:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Taxes]
+      summary: List tax rates
+      responses:
+        '200': { description: Tax rates, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/TaxRate' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [Taxes]
+      summary: Create tax rate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/TaxRateCreate' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/TaxRate' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  # item endpoints only
+  /merchants/{merchantId}/tax-rates/{taxrateId}:
+    parameters:
+      - $ref: '#/components/parameters/MerchantId'
+      - $ref: '#/components/parameters/TaxRateId'
+    get:
+      tags: [Taxes]
+      summary: Get tax rate
+      responses:
+        '200': { description: Tax rate, content: { application/json: { schema: { $ref: '#/components/schemas/TaxRate' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [Taxes]
+      summary: Update tax rate
+      description: |
+        Updates mutable fields. 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                rate: { type: number }
+                description: { type: string }
+                status: { type: string, enum: [active, inactive, pending] }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/TaxRate' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }   
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Taxes]
+      summary: Delete tax rate
+      description: Deletes a tax rate.
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }   # in use → refuse hard delete
+
+  /merchants/{merchantId}/services:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Services]
+      summary: List services
+      responses:
+        '200':
+          description: Services
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Service' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+
+    post:
+      tags: [Services]
+      summary: Create service (scoped to merchant in path)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ServiceCreateInMerchant' }
+            examples:
+              basic:
+                value:
+                  name: "Men's Haircut"
+                  description: "Classic cut"
+                  duration: 45
+                  price: 25.00
+                  category: "Hair"
+                  subcategory: "Men"
+      responses:
+        '201':
+          description: Created
+          headers:
+            ETag:
+              schema: { type: string }
+              description: Version tag for optimistic locking
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Service' }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/services/{serviceId}:
+    parameters:
+      - $ref: '#/components/parameters/MerchantId'
+      - $ref: '#/components/parameters/ServiceId'
+    get:
+      tags: [Services]
+      summary: Get service
+      responses:
+        '200':
+          description: Service
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Service' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [Services]
+      summary: Update service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                description: { type: string }
+                duration: { type: integer, description: "minutes" }
+                price: { type: number, multipleOf: 0.01 }
+                status: { type: string, enum: [active, inactive] }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Service' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }  # ETag mismatch / active reservations
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Services]
+      summary: Delete service
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+
+  /merchants/{merchantId}/schedules:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Schedules]
+      summary: List schedules
+      parameters:
+        - in: query
+          name: userId
+          schema: { type: integer, format: int64 }
+        - in: query
+          name: date
+          schema: { type: string, format: date }
+      responses:
+        '200': { description: Schedules, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Schedule' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [Schedules]
+      summary: Create schedule entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScheduleCreate' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Schedule' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /merchants/{merchantId}/schedules/{scheduleId}:
+    parameters:
+      - $ref: '#/components/parameters/MerchantId'
+      - $ref: '#/components/parameters/ScheduleId'
+    get:
+      tags: [Schedules]
+      summary: Get schedule entry
+      responses:
+        '200': { description: Schedule, content: { application/json: { schema: { $ref: '#/components/schemas/Schedule' } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+    patch:
+      tags: [Schedules]
+      summary: Update schedule entry
+      parameters:
+        - in: header
+          name: If-Match
+          schema: { type: string }
+          description: Optional ETag for optimistic locking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id: { type: integer, format: int64 }
+                date: { type: string, format: date }
+                start_time: { type: string, pattern: '^\d{2}:\d{2}(:\d{2})?$' }
+                end_time: { type: string, pattern: '^\d{2}:\d{2}(:\d{2})?$' }
+                is_available: { type: boolean }
+                status: { type: string, enum: [active, cancelled, modified] }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Schedule' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }  # overlaps / locked shifts
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Schedules]
+      summary: Delete schedule entry
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+  /merchants/{merchantId}/reservations:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' } ]
+    get:
+      tags: [Reservations]
+      summary: List reservations
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string, enum: [pending, confirmed, in_progress, completed, cancelled, no_show] }
+      responses:
+        '200': { description: Reservations, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Reservation' } } } } }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+    post:
+      tags: [Reservations]
+      summary: Create reservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ReservationCreate' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Reservation' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+
+  /merchants/{merchantId}/reservations/{reservationId}:
+    parameters: [ { $ref: '#/components/parameters/MerchantId' }, { $ref: '#/components/parameters/ReservationId' } ]
+    patch:
+      tags: [Reservations]
+      summary: Update or cancel reservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ReservationUpdate' }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Reservation' } } } }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Reservations]
+      summary: Delete individual reservation
+      responses:
+        '204': { description: Reservation deleted }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '409': { $ref: '#/components/responses/ConflictError' }
+
+  /merchants/{merchantId}/reservations/{reservationId}/deposits:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/ReservationId' }
+
+    post:
+      tags: [Deposits]
+      summary: Record reservation deposit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationDepositCreate'
+      responses:
+        '201':
+          description: Deposit recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationDeposit'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    get:
+      tags: [Deposits]
+      summary: Get all deposits for a reservation
+      responses:
+        '200':
+          description: List of reservation deposits
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservationDeposit'
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+  /merchants/{merchantId}/reservations/{reservationId}/deposits/{depositId}:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/ReservationId' }
+      - in: path
+        name: depositId
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The ID of the reservation deposit
+
+    patch:
+      tags: [Deposits]
+      summary: Update a reservation deposit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  multipleOf: 0.01
+                payment_method:
+                  type: string
+      responses:
+        '200':
+          description: Deposit updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationDeposit'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    delete:
+      tags: [Deposits]
+      summary: Delete a reservation deposit
+      responses:
+        '204': { description: Deposit deleted successfully }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+
+  /merchants/{merchantId}/reservations/{reservationId}/cancellation-fees:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/ReservationId' }
+
+    post:
+      tags: [CancellationFees]
+      summary: Apply cancellation fee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancellationFeeCreate'
+      responses:
+        '201':
+          description: Fee recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancellationFee'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    get:
+      tags: [CancellationFees]
+      summary: Get all cancellation fees for a reservation
+      responses:
+        '200':
+          description: List of cancellation fees
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CancellationFee'
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+  /merchants/{merchantId}/reservations/{reservationId}/cancellation-fees/{feeId}:
+    parameters:
+      - { $ref: '#/components/parameters/MerchantId' }
+      - { $ref: '#/components/parameters/ReservationId' }
+      - in: path
+        name: feeId
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The ID of the cancellation fee
+
+    patch:
+      tags: [CancellationFees]
+      summary: Update a cancellation fee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  multipleOf: 0.01
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Cancellation fee updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancellationFee'
+        '400': { $ref: '#/components/responses/BadRequestError' }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    delete:
+      tags: [CancellationFees]
+      summary: Delete a cancellation fee
+      responses:
+        '204': { description: Cancellation fee deleted successfully }
+        '401': { $ref: '#/components/responses/UnauthorizedError' }
+        '403': { $ref: '#/components/responses/ForbiddenError' }
+        '404': { $ref: '#/components/responses/NotFoundError' }
+
+
+  /webhooks/stripe:
+    post:
+      tags: [Webhooks]
+      summary: Stripe webhook (payments/refunds events)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        '200': { description: OK }
+        '400': { $ref: '#/components/responses/BadRequestError' }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    MerchantId: { name: merchantId, in: path, required: true, schema: { type: integer, format: int64 } }
+    BranchId: { name: branchId, in: path, required: true, schema: { type: integer, format: int64 } }
+    UserId: { name: userId, in: path, required: true, schema: { type: integer, format: int64 } }
+    RoleId: { name: roleId, in: path, required: true, schema: { type: integer, format: int64 } }
+    ProductId: { name: productId, in: path, required: true, schema: { type: integer, format: int64 } }
+    CategoryId: { name: categoryId, in: path, required: true, schema: { type: integer, format: int64 } }
+    IngredientId: { name: ingredientId, in: path, required: true, schema: { type: integer, format: int64 } }
+    OrderId: { name: orderId, in: path, required: true, schema: { type: integer, format: int64 } }
+    PaymentId: { name: paymentId, in: path, required: true, schema: { type: integer, format: int64 } }
+    TaxRateId: { name: taxrateId, in: path, required: true, schema: { type: integer, format: int64 } }
+    ReservationId: { name: reservationId, in: path, required: true, schema: { type: integer, format: int64 } }
+    ServiceId: { name: serviceId, in: path, required: true, schema: { type: integer, format: int64 } }
+    ScheduleId: { name: scheduleId, in: path, required: true, schema: { type: integer, format: int64 } }
+    TypeId: { name: typeId, in: path, required: true, schema: { type: integer, format: int64 } }
+    DiscountId: { name: discountId, in: path, required: true, schema: { type: integer, format: int64 } }
+
+  responses:
+    UnauthorizedError:
+      description: Unauthenticated (missing/invalid/expired token)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          examples:
+            unauthenticated:
+              value: { code: unauthenticated, message: "Missing or invalid access token." }
+    ForbiddenError:
+      description: Forbidden (valid token, but not allowed by role/tenant)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          examples:
+            forbidden:
+              value: { code: forbidden, message: "You do not have permission to perform this action." }
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          examples:
+            not_found:
+              value: { code: not_found, message: "Resource not found." }
+    BadRequestError:
+      description: Bad request (malformed JSON or unsupported value)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          examples:
+            bad_request:
+              value: { code: bad_request, message: "Malformed request body." }
+    ValidationError:
+      description: Validation error (field-level errors)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          examples:
+            validation_error:
+              value:
+                code: validation_error
+                message: "One or more fields are invalid."
+                fieldErrors:
+                  - field: email
+                    message: Email is already in use.
+                    code: unique_violation
+    ConflictError:
+      description: Conflict (concurrency or business rule)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          examples:
+            conflict:
+              value: { code: conflict, message: "Conflict with current resource state." }
+
+  schemas:
+    # Auth
+    AuthTokens:
+      type: object
+      properties:
+        accessToken: { type: string }
+        refreshToken: { type: string }
+        expiresIn: { type: integer }
+      required: [accessToken, refreshToken]
+
+    # Generic error schema
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          description: Machine-readable code
+          enum: [unauthenticated, forbidden, not_found, bad_request, validation_error, conflict, rate_limited, internal]
+        message:
+          type: string
+          description: Human-readable summary
+        requestId:
+          type: string
+          description: Trace id for debugging
+        details:
+          type: object
+          additionalProperties: true
+        fieldErrors:
+          type: array
+          items:
+            type: object
+            required: [field, message]
+            properties:
+              field: { type: string }
+              message: { type: string }
+              code: { type: string }
+
+    # Merchant/Branch
+    MerchantCreate:
+      type: object
+      required: [business_name, business_type, phone, email]
+      properties:
+        business_name: { type: string }
+        business_type: { type: string, enum: [restaurant, bar, cafe, barber, hairdresser, spa, beauty_salon] }
+        AddressLine1: { type: string }
+        City: { type: string }
+        Region: { type: string }
+        PostalCode: { type: string }
+        phone: { type: string }
+        email: { type: string, format: email }
+    MerchantUpdate:
+      allOf: [ { $ref: '#/components/schemas/MerchantCreate' } ]
+    Merchant:
+      allOf:
+        - $ref: '#/components/schemas/MerchantCreate'
+        - type: object
+          properties:
+            merchant_id: { type: integer, format: int64 }
+            status: { type: string, enum: [active, inactive, suspended], default: active }
+            created_at: { type: string, format: date-time }
+            updated_at: { type: string, format: date-time }
+
+    BranchCreate:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        AddressLine1: { type: string }
+        City: { type: string }
+        Region: { type: string }
+        PostalCode: { type: string }
+        phone: { type: string }
+        email: { type: string, format: email }
+        status: { type: string, enum: [active, inactive], default: active }
+    BranchUpdate:
+      allOf: [ { $ref: '#/components/schemas/BranchCreate' } ]
+    Branch:
+      allOf:
+        - $ref: '#/components/schemas/BranchCreate'
+        - type: object
+          properties:
+            branch_id: { type: integer, format: int64 }
+            merchant_id: { type: integer, format: int64 }
+            created_at: { type: string, format: date-time }
+            updated_at: { type: string, format: date-time }
+
+    # RBAC
+    RoleCreate:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        description: { type: string }
+    Role:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        description: { type: string }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    Permission:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        resource: { type: string }
+        action: { type: string }
+        description: { type: string }
+
+    EmployeeCreate:
+      type: object
+      required: [email, password, first_name, last_name, role_id]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string }
+        first_name: { type: string }
+        last_name: { type: string }
+        phone: { type: string }
+        role_id: { type: integer }
+    EmployeeUpdate:
+      type: object
+      properties:
+        first_name: { type: string }
+        last_name: { type: string }
+        phone: { type: string }
+        role_id: { type: integer }
+        status: { type: string, enum: [active, suspended, fired] }
+    Employee:
+      type: object
+      properties:
+        user_id: { type: integer, format: int64 }
+        merchant_id: { type: integer, format: int64 }
+        role_id: { type: integer }
+        email: { type: string, format: email }
+        password: { type: string, format: password }
+        first_name: { type: string }
+        last_name: { type: string }
+        phone: { type: string }
+        status: { type: string, enum: [active, suspended, fired], default: active }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+
+    # Product Types / Products / Ingredients / Catalogue
+    ProductTypeCreate:
+      type: object
+      required: [product_name]
+      properties:
+        product_name: { type: string }
+    ProductTypeUpdate:
+      type: object
+      properties:
+        product_name: { type: string }
+    ProductType:
+      type: object
+      properties:
+        product_type_id: { type: integer, format: int64 }
+        product_name: { type: string }
+
+    ProductCreate:
+      type: object
+      required: [name, tax_category, product_type, merchant_id, base_price, type]
+      properties:
+        name: { type: string }
+        description: { type: string }
+        tax_category: { type: integer, format: int64 }
+        product_type: { type: integer, format: int64 }
+        merchant_id: { type: integer, format: int64 }
+        base_price: { type: number, multipleOf: 0.01 }
+        type: { type: string, enum: [product, service] }
+        status: { type: string, enum: [active, inactive, out_of_stock], default: active }
+    ProductUpdate:
+      allOf: [ { $ref: '#/components/schemas/ProductCreate' } ]
+    Product:
+      allOf:
+        - $ref: '#/components/schemas/ProductCreate'
+        - type: object
+          properties:
+            product_id: { type: integer, format: int64 }
+            created_at: { type: string, format: date-time }
+            updated_at: { type: string, format: date-time }
+
+    IngredientCategoryCreate:
+      type: object
+      required: [product_id, merchant_id, name]
+      properties:
+        product_id: { type: integer, format: int64 }
+        merchant_id: { type: integer, format: int64 }
+        name: { type: string }
+        description: { type: string }
+    IngredientCategoryUpdate:
+      allOf: [ { $ref: '#/components/schemas/IngredientCategoryCreate' } ]
+    IngredientCategory:
+      allOf:
+        - $ref: '#/components/schemas/IngredientCategoryCreate'
+        - type: object
+          properties:
+            category_id: { type: integer, format: int64 }
+
+    IngredientCreate:
+      type: object
+      required: [ingredient_category_id, name, price]
+      properties:
+        ingredient_category_id: { type: integer, format: int64 }
+        name: { type: string }
+        price: { type: number, multipleOf: 0.01 }
+    Ingredient:
+      allOf:
+        - $ref: '#/components/schemas/IngredientCreate'
+        - type: object
+          properties:
+            ingredient_id: { type: integer, format: int64 }
+
+    CatalogueItemUpsert:
+      type: object
+      required: [product_id, status]
+      properties:
+        product_id: { type: integer, format: int64 }
+        status: { type: string, enum: [active, inactive, out_of_stock] }
+        stock_quantity: { type: integer, minimum: 0 }
+    CatalogueItem:
+      allOf:
+        - $ref: '#/components/schemas/CatalogueItemUpsert'
+        - type: object
+          properties:
+            catalogue_id: { type: integer, format: int64 }
+            merchant_id: { type: integer, format: int64 }
+            created_at: { type: string, format: date-time }
+            updated_at: { type: string, format: date-time }
+
+    # Orders & Items
+    OrderCreate:
+      type: object
+      required: [employee_id]
+      properties:
+        employee_id: { type: integer, format: int64 }
+        discount_id: { type: integer, format: int64, nullable: true }
+        special_requests: { type: string }
+    OrderUpdate:
+      type: object
+      properties:
+        discount_id: { type: integer, format: int64, nullable: true }
+        special_requests: { type: string }
+        status: { type: string, enum: [open, closed, cancelled, refunded] }
+    Order:
+      type: object
+      properties:
+        order_id: { type: integer, format: int64 }
+        merchant_id: { type: integer, format: int64 }
+        employee_id: { type: integer, format: int64 }
+        order_number: { type: string }
+        order_date: { type: string, format: date-time }
+        order_status: { type: string, enum: [open, closed, cancelled, refunded] }
+        discount_id: { type: integer, format: int64, nullable: true }
+        special_requests: { type: string }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/OrderItem' }
+        totals:
+          type: object
+          description: Computed on-the-fly from products + ingredients + discounts + taxes
+          properties:
+            subtotal: { type: number, multipleOf: 0.01 }
+            discount_total: { type: number, multipleOf: 0.01 }
+            tax_total: { type: number, multipleOf: 0.01 }
+            grand_total: { type: number, multipleOf: 0.01 }
+            paid_total: { type: number, multipleOf: 0.01 }
+            amount_due: { type: number, multipleOf: 0.01 }
+    OrderItemCreate:
+      type: object
+      required: [product_id, quantity]
+      properties:
+        product_id: { type: integer, format: int64 }
+        quantity: { type: integer, minimum: 1 }
+        ingredient_ids:
+          type: array
+          items: { type: integer, format: int64 }
+    OrderItem:
+      type: object
+      properties:
+        order_item_id: { type: integer, format: int64 }
+        order_id: { type: integer, format: int64 }
+        product_id: { type: integer, format: int64 }
+        quantity: { type: integer }
+        payment_status: { type: string, enum: [Unpaid, Paid] }
+
+    # Payments / Splits / Refunds
+    PaymentCreate:
+      type: object
+      required: [payment_method, amount]
+      properties:
+        payment_method: { type: string, enum: [cash, card, gift_card] }
+        amount: { type: number, multipleOf: 0.01 }
+        tip_amount: { type: number, multipleOf: 0.01, default: 0.00 }
+        split: { type: boolean, default: false }
+        stripe_payment_intent_id: { type: string, description: Required for card when integrating Stripe }
+    Payment:
+      type: object
+      properties:
+        payment_id: { type: integer, format: int64 }
+        order_id: { type: integer, format: int64, nullable: true }
+        merchant_id: { type: integer, format: int64 }
+        payment_method: { type: string, enum: [cash, card, gift_card] }
+        split: { type: boolean }
+        status: { type: string, enum: [pending, processing, completed, failed, cancelled, refunded] }
+        tip_amount: { type: number, multipleOf: 0.01 }
+        amount: { type: number, multipleOf: 0.01 }
+        created_at: { type: string, format: date-time }
+        processed_at: { type: string, format: date-time, nullable: true }
+
+    PaymentSplitCreate:
+      type: object
+      required: [customer_name, amount, payment_method]
+      properties:
+        customer_name: { type: string }
+        amount: { type: number, multipleOf: 0.01 }
+        tip_amount: { type: number, multipleOf: 0.01, default: 0.00 }
+        payment_method: { type: string, enum: [cash, card, gift_card] }
+        items:
+          type: array
+          items:
+            type: object
+            required: [order_item_id, amount]
+            properties:
+              order_item_id: { type: integer, format: int64 }
+              amount: { type: number, multipleOf: 0.01 }
+    PaymentSplit:
+      type: object
+      properties:
+        split_id: { type: integer, format: int64 }
+        payment_id: { type: integer, format: int64 }
+        customer_name: { type: string }
+        amount: { type: number, multipleOf: 0.01 }
+        tip_amount: { type: number, multipleOf: 0.01 }
+        payment_method: { type: string, enum: [cash, card, gift_card] }
+        status: { type: string, enum: [pending, completed, failed] }
+        created_at: { type: string, format: date-time }
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              split_item_id: { type: integer, format: int64 }
+              order_item_id: { type: integer, format: int64 }
+              amount: { type: number, multipleOf: 0.01 }
+
+    RefundCreate:
+      type: object
+      required: [amount, refund_type]
+      properties:
+        amount: { type: number, multipleOf: 0.01 }
+        reason: { type: string }
+        refund_type: { type: string, enum: [full, partial] }
+        payment_id: { type: integer, format: int64, nullable: true }
+    Refund:
+      type: object
+      properties:
+        refund_id: { type: integer, format: int64 }
+        order_id: { type: integer, format: int64 }
+        payment_id: { type: integer, format: int64, nullable: true }
+        merchant_id: { type: integer, format: int64 }
+        amount: { type: number, multipleOf: 0.01 }
+        reason: { type: string }
+        refund_type: { type: string, enum: [full, partial] }
+        status: { type: string, enum: [pending, approved, processed, rejected] }
+        processed_by: { type: integer, format: int64, nullable: true }
+        approved_by: { type: integer, format: int64, nullable: true }
+        transaction_reference: { type: string }
+        created_at: { type: string, format: date-time }
+        processed_at: { type: string, format: date-time, nullable: true }
+
+    # Discounts & Taxes
+    DiscountCreate:
+      type: object
+      required: [name, type, value_type, value, start_time]
+      properties:
+        name: { type: string }
+        type: { type: string, enum: [order_discount, product_discount] }
+        value_type: { type: string, enum: [value, percentage] }
+        value: { type: number }
+        minimum_order_value: { type: number, multipleOf: 0.01, default: 0.00 }
+        start_time: { type: string, format: date-time }
+        end_time: { type: string, format: date-time, nullable: true }
+        status: { type: string, enum: [active, inactive, expired], default: inactive }
+        max_uses: { type: integer, nullable: true }
+    DiscountUpdate:
+      type: object
+      properties:
+        name: { type: string }
+        type: { type: string, enum: [order_discount, product_discount] }
+        value_type: { type: string, enum: [value, percentage] }
+        value: { type: number }
+        minimum_order_value: { type: number, multipleOf: 0.01 }
+        start_time: { type: string, format: date-time }
+        end_time: { type: string, format: date-time, nullable: true }
+        status: { type: string, enum: [active, inactive, expired] }
+        max_uses: { type: integer, nullable: true }
+    Discount:
+      allOf:
+        - $ref: '#/components/schemas/DiscountCreate'
+        - type: object
+          properties:
+            discount_id: { type: integer, format: int64 }
+            current_uses: { type: integer }
+            merchant_id: { type: integer, format: int64 }
+
+    TaxRateCreate:
+      type: object
+      required: [name, rate]
+      properties:
+        name: { type: string }
+        rate: { type: number,  multipleOf: 0.01 }
+        description: { type: string }
+        status: { type: string, enum: [active, inactive, pending], default: pending }
+    TaxRate:
+      allOf:
+        - $ref: '#/components/schemas/TaxRateCreate'
+        - type: object
+          properties:
+            taxrate_id: { type: integer, format: int64 }
+            created_at: { type: string, format: date-time }
+            updated_at: { type: string, format: date-time }
+
+    # Services / Schedules / Reservations
+    ServiceCreateInMerchant:
+      type: object
+      required: [name, duration, price]
+      properties:
+        name: { type: string }
+        description: { type: string }
+        duration: { type: integer, description: "minutes" }
+        price: { type: number, multipleOf: 0.01 }
+        subcategory: { type: string }
+        # status optional (or omit completely and default server-side)
+        status: { type: string, enum: [active, inactive], default: active }
+    Service:
+      allOf:
+        - $ref: '#/components/schemas/ServiceCreateInMerchant'
+        - type: object
+          properties:
+            service_id: { type: integer, format: int64 }
+            created_at: { type: string, format: date-time }
+            updated_at: { type: string, format: date-time }
+
+    ScheduleCreate:
+      type: object
+      required: [user_id, date, start_time, end_time]
+      properties:
+        user_id: { type: integer, format: int64 }
+        date: { type: string, format: date }
+        start_time: { type: string, pattern: '^\d{2}:\d{2}(:\d{2})?$' }
+        end_time: { type: string, pattern: '^\d{2}:\d{2}(:\d{2})?$' }
+        is_available: { type: boolean, default: true }
+        status: { type: string, enum: [active, cancelled, modified], default: active }
+    Schedule:
+      allOf:
+        - $ref: '#/components/schemas/ScheduleCreate'
+        - type: object
+          properties:
+            schedule_id: { type: integer, format: int64 }
+            merchant_id: { type: integer, format: int64 }
+            created_at: { type: string, format: date-time }
+            updated_at: { type: string, format: date-time }
+
+    ReservationCreate:
+      type: object
+      required: [customer_id, reservation_date, start_time, end_time]
+      properties:
+        customer_id: { type: integer, format: int64 }
+        service_id: { type: integer, format: int64, nullable: true }
+        assigned_user_id: { type: integer, format: int64, nullable: true }
+        reservation_date: { type: string, format: date }
+        start_time: { type: string, pattern: '^\d{2}:\d{2}(:\d{2})?$' }
+        end_time: { type: string, pattern: '^\d{2}:\d{2}(:\d{2})?$' }
+        deposit_amount: { type: number, multipleOf: 0.01, default: 0.00 }
+        total_amount: { type: number, multipleOf: 0.01, default: 0.00 }
+    ReservationUpdate:
+      type: object
+      properties:
+        service_id: { type: integer, format: int64, nullable: true }
+        assigned_user_id: { type: integer, format: int64, nullable: true }
+        reservation_date: { type: string, format: date }
+        start_time: { type: string }
+        end_time: { type: string }
+        status: { type: string, enum: [pending, confirmed, in_progress, completed, cancelled, no_show] }
+    Reservation:
+      allOf:
+        - $ref: '#/components/schemas/ReservationCreate'
+        - type: object
+          properties:
+            reservation_id: { type: integer, format: int64 }
+            merchant_id: { type: integer, format: int64 }
+            status: { type: string, enum: [pending, confirmed, in_progress, completed, cancelled, no_show] }
+            created_at: { type: string, format: date-time }
+            updated_at: { type: string, format: date-time }
+
+    ReservationDepositCreate:
+      type: object
+      required: [amount, payment_method]
+      properties:
+        amount: { type: number, multipleOf: 0.01 }
+        payment_method: { type: string, enum: [cash, card, mobile_payment, bank_transfer] }
+        transaction_reference: { type: string }
+    ReservationDeposit:
+      allOf:
+        - $ref: '#/components/schemas/ReservationDepositCreate'
+        - type: object
+          properties:
+            deposit_id: { type: integer, format: int64 }
+            reservation_id: { type: integer, format: int64 }
+            status: { type: string, enum: [pending, completed, refunded], default: pending }
+            created_at: { type: string, format: date-time }
+
+    CancellationFeeCreate:
+      type: object
+      required: [amount]
+      properties:
+        amount: { type: number, multipleOf: 0.01 }
+        waived: { type: boolean, default: false }
+        waived_by: { type: integer, format: int64, nullable: true }
+    CancellationFee:
+      allOf:
+        - $ref: '#/components/schemas/CancellationFeeCreate'
+        - type: object
+          properties:
+            fee_id: { type: integer, format: int64 }
+            reservation_id: { type: integer, format: int64 }
+            applied_at: { type: string, format: date-time }

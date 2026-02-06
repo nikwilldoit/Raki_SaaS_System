@@ -1,0 +1,65 @@
+.orders-page {
+    background: #f7f7f7;
+    min-height: 100vh;
+}
+
+.orders-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.orders-title {
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.orders-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table th {
+    background: #4a90e2;
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.orders-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Status Colors */
+.status.open {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+.status.closed {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.status.cancelled {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.no-orders {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+}
