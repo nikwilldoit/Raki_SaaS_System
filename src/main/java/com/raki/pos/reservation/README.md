@@ -13,6 +13,10 @@ The Reservations feature allows a business to book, review, and adjust appointme
   - Review a summary of the appointment before confirming.
   - Submit the reservation and receive a clear success or error message.
 
+  <p align="center">
+  <img width="1212" height="493" alt="image" src="https://github.com/user-attachments/assets/a6396cf3-6f6e-41f4-bafe-81791585368a" />
+</p>
+
 - Offers a **Reservations list page** that:
   - Shows all reservations for the current business.
   - Displays for each reservation:
@@ -33,6 +37,10 @@ The Reservations feature allows a business to book, review, and adjust appointme
   - Lets staff delete a reservation.
   - Frees up the associated time slot so it becomes available again.
   - Maintains a clean schedule and avoids conflicting bookings.
+
+<p align="center">
+  <img width="894" height="905" alt="image" src="https://github.com/user-attachments/assets/8414478b-c750-4a60-8cc3-59199262e461" />
+</p>
 
 ## How availability works
 
@@ -80,6 +88,10 @@ If the reservation is deleted:
 - The associated time slot is freed so it can be used for new bookings.
 - The reservation is removed from the list.
 
+<p align="center">
+  <img width="394" height="383" alt="image" src="https://github.com/user-attachments/assets/e64900d6-baa5-444d-909b-078e121407fc" />
+</p>
+
 ## When this feature is used
 
 - When customers call or visit to book appointments (e.g., haircuts, spa sessions).
@@ -92,11 +104,3 @@ If the reservation is deleted:
 - Employees who manage bookings for customers day‑to‑day.
 - Owners and managers who monitor the schedule and adjust reservations.
 - Not used directly by customers, but it represents their booked appointments in the system.
-
-<p align="center">
-  <img width="1212" height="493" alt="image" src="https://github.com/user-attachments/assets/a6396cf3-6f6e-41f4-bafe-81791585368a" />
-</p>
-
-<p align="center">
-  <img width="894" height="905" alt="image" src="https://github.com/user-attachments/assets/8414478b-c750-4a60-8cc3-59199262e461" />
-</p>
