@@ -1,4 +1,4 @@
-<img width="415" height="596" alt="image" src="https://github.com/user-attachments/assets/77df0d3d-8ee5-4e44-91b5-3ffa2640d206" /># Products
+# Products
 
 The Products feature allows a business to define, organize, and maintain the items it sells, such as food, drinks, or services. It provides a central place to create, edit, list, and remove products and to attach tax categories, subcategories, and ingredient options.
 
