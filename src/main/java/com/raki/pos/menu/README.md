@@ -5,7 +5,7 @@ The Menu Management feature allows a business to structure the items it offers b
 ## What this feature does
 
 - Provides a **Menu dashboard** with quick access to:
-  - **Products** – for adding, editing, and deleting menu items.
+  - [**Products**](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/product/README.md) – for adding, editing, and deleting menu items.
   - **Ingredient Categories** – for defining groups of ingredients (e.g., toppings, add‑ons).
 - Adapts the description based on business type:
   - Food businesses (restaurants, cafés, bars) manage products and ingredient categories for their menu.
