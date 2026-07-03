@@ -13,17 +13,29 @@ The Payments feature handles how customers pay for their orders in the system. I
   - The full amount in a single payment.
   - Only part of the amount, with support for split payments.
 
+<p align="center">
+  <img width="1874" height="440" alt="image" src="https://github.com/user-attachments/assets/bd6bc632-a32b-4552-9b8d-8b20738ee81f" />
+</p>
+
 - Records each payment with:
   - The total amount paid.
   - The total tip amount.
   - The chosen payment method (cash, card, gift card).
   - Information about who paid and for which items.
+ 
+<p align="center">
+  <img width="1873" height="445" alt="image" src="https://github.com/user-attachments/assets/6845cb8a-136c-49b7-a346-f8d06bf14fde" />
+</p>
 
 - Tracks how much of the order has already been paid and how much is left to pay.
 - Once the order is fully paid:
   - Marks the order as closed.
   - Marks all order items as paid.
   - Marks all related payments and splits as completed.
+
+<p align="center">
+  <img width="1879" height="389" alt="image" src="https://github.com/user-attachments/assets/c267b5d3-2445-49b2-bbee-e56a951f0713" />
+</p>
 
 ## How full payments work
 
@@ -69,19 +81,6 @@ From the split payment screen:
      - If yes, closes the order and marks all payments and splits as completed.
      - If not, returns to the payment overview showing what still remains to be paid.
 
-## How payment history is shown
-
-In the payment overview:
-
-- The system shows:
-  - The total bill amount.
-  - A history of payments already made for the order.
-- For each payment, it displays:
-  - A payment number.
-  - Who paid.
-  - A short summary of products or splits covered.
-  - The amount paid and the tip.
-
 It also shows how much is still left to pay, so staff and customers can see at a glance whether the order is fully settled.
 
 ## When this feature is used
@@ -96,15 +95,4 @@ It also shows how much is still left to pay, so staff and customers can see at a
 - Staff members who process payments at the point of sale.
 - Customers indirectly, through staff entering their chosen split and payment method.
 - Owners and managers, by reviewing payment summaries and ensuring that orders are correctly paid and closed.
-
-<p align="center">
-  <img width="1874" height="440" alt="image" src="https://github.com/user-attachments/assets/bd6bc632-a32b-4552-9b8d-8b20738ee81f" />
-</p>
-
-<p align="center">
-  <img width="1873" height="445" alt="image" src="https://github.com/user-attachments/assets/6845cb8a-136c-49b7-a346-f8d06bf14fde" />
-</p>
-
-<p align="center">
-  <img width="1879" height="389" alt="image" src="https://github.com/user-attachments/assets/c267b5d3-2445-49b2-bbee-e56a951f0713" />
-</p>
+  
