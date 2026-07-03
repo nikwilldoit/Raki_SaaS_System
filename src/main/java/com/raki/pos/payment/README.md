@@ -1,6 +1,6 @@
 # Payments
 
-The Payments feature handles how customers pay for their orders in the system. It supports both simple “pay everything at once” scenarios and more advanced split payments where multiple people share the bill and add their own tips.
+The Payments feature handles how customers pay for their orders in the system. It supports both simple “pay everything at once” scenarios and more advanced “split” payments where multiple people share the bill and add their own tips.
 
 ## What this feature does
 
