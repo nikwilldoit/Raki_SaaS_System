@@ -1,4 +1,4 @@
-# POS Web Application
+# **Raki** - Full-Stack POS SaaS Web Application
 
 This project is a full-stack Point of Sale (POS) Software-as-a-Service (SaaS) web application designed for small businesses. It provides a complete business management solution, including menu management, orders, payments, reservations, staff administration, taxation, and administrative tools.
 
