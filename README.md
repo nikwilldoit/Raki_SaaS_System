@@ -26,7 +26,7 @@ Each major backend module includes its own README for a more detailed explanatio
 
 | Module | Documentation |
 |--------|---------------|
-| Admin / SuperAdmin | [`src/main/java/com/raki/pos/admin/README.md`](./pos-backend/src/main/java/com/raki/pos/admin/README.md) |
+| Admin | [`src/main/java/com/raki/pos/admin/README.md`](Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/admin/README.md) |
 | Authentication & Security | [`src/main/java/com/raki/pos/auth/README.md`](./pos-backend/src/main/java/com/raki/pos/auth/README.md) |
 | Business | [`src/main/java/com/raki/pos/business/README.md`](./pos-backend/src/main/java/com/raki/pos/business/README.md) |
 | Dashboard | [`src/main/java/com/raki/pos/dashboard/README.md`](./pos-backend/src/main/java/com/raki/pos/dashboard/README.md) |
@@ -189,7 +189,7 @@ Main components include:
 
 ## Database
 
-Relational database (PostgreSQL or MySQL) including tables such as:
+Relational database (MySQL) including tables such as:
 
 - `users`
 - `roles`
@@ -255,48 +255,4 @@ root/
 
 # Getting Started
 
-## 1. Clone the repositories
-
-```bash
-git clone <frontend-repository-url>
-git clone <backend-repository-url>
-```
-
----
-
-## 2. Configure the environment
-
-- Configure your database connection.
-- Set the JWT secret in the backend configuration.
-- Update the frontend API URL if necessary (default: `http://localhost:8080`).
-
----
-
-## 3. Run the backend
-
-```bash
-mvn spring-boot:run
-```
-
-or start the Spring Boot application from your IDE.
-
----
-
-## 4. Run the frontend
-
-```bash
-npm install
-npm start
-```
-
----
-
-## 5. Open the application
-
-Navigate to:
-
-```text
-http://localhost:3000
-```
-
-and log in using a test account.
+[Project Setup Instructions (Spring Boot + React)](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/setup-instructions.md)
