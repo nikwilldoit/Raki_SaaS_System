@@ -227,11 +227,6 @@ The implementation involved:
 - Software architecture
 - International collaboration under the Erasmus+ programme
 
-For more information:
-
-- [Vilnius University – Erasmus+ Studies](https://mif.vu.lt/lt3/en/studies/exchange-studies/erasmus-studies) [web:50]
-- [Vilnius University Exchange Opportunities](https://www.vu.lt/en/students/services-for-students/exchange-opportunities) [web:41]
-
 ---
 
 # Repository Structure
