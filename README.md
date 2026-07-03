@@ -2,7 +2,7 @@
 
 This project is a full-stack Point of Sale (POS) Software-as-a-Service (SaaS) web application designed for small businesses. It provides a complete business management solution, including menu management, orders, payments, reservations, staff administration, taxation, and administrative tools.
 
-The project was designed and implemented during an **Erasmus+** study period at **Vilnius University** (Faculty of Mathematics and Informatics).
+The project was designed and implemented during an **Erasmus+** study period at **Vilnius University** (Faculty of Mathematics and Informatics). [web:41][web:50]
 
 ---
 
@@ -10,13 +10,13 @@ The project was designed and implemented during an **Erasmus+** study period at 
 
 The application consists of two main repositories/modules:
 
-- **Frontend (React)** – Customer- and staff-facing user interface
+- **Frontend (React)** – customer- and staff-facing user interface  
   - Frontend source: [`pos-frontend/`](./pos-frontend/)
   - Main React code: [`pos-frontend/src/Components/`](./pos-frontend/src/Components/)
 
-- **Backend (Spring Boot)** – REST APIs, business logic, authentication, and persistence
+- **Backend (Spring Boot)** – REST APIs, business logic, authentication, and persistence  
   - Backend source: [`pos-backend/`](./pos-backend/)
-  - Main application package: [`src/main/java/com/raki/pos/`](./pos-backend/src/main/java/com/raki/pos/)
+  - Main application package: [`pos-backend/src/main/java/com/raki/pos/`](./pos-backend/src/main/java/com/raki/pos/)
 
 ---
 
@@ -25,7 +25,7 @@ The application consists of two main repositories/modules:
 Each major backend module includes its own README for a more detailed explanation of its architecture, responsibilities, and implementation.
 
 | Module | Documentation |
-|---------|---------------|
+|--------|---------------|
 | Admin / SuperAdmin | [`src/main/java/com/raki/pos/admin/README.md`](./pos-backend/src/main/java/com/raki/pos/admin/README.md) |
 | Authentication & Security | [`src/main/java/com/raki/pos/auth/README.md`](./pos-backend/src/main/java/com/raki/pos/auth/README.md) |
 | Business | [`src/main/java/com/raki/pos/business/README.md`](./pos-backend/src/main/java/com/raki/pos/business/README.md) |
@@ -126,15 +126,15 @@ The frontend is built with **React** and focuses on usability for both staff and
 
 Features include:
 
-- Menu management
-- Product management
-- Ingredient management
-- Payment overview
-- Split payment interface
-- Reservation wizard
-- Reservation management
-- Staff administration
-- SuperAdmin business selection
+- Menu management  
+- Product management  
+- Ingredient management  
+- Payment overview  
+- Split payment interface  
+- Reservation wizard  
+- Reservation management  
+- Staff administration  
+- SuperAdmin business selection  
 
 Implementation highlights:
 
@@ -152,10 +152,10 @@ The backend is built with **Spring Boot** and **Spring Security**.
 
 Main components include:
 
-- REST Controllers
+- REST controllers
 - Service layer
 - DTOs
-- SQL persistence using JdbcTemplate
+- SQL persistence using `JdbcTemplate`
 - JWT authentication
 - Security filters
 - Transaction management
@@ -191,31 +191,31 @@ Main components include:
 
 Relational database (PostgreSQL or MySQL) including tables such as:
 
-- users
-- roles
-- businesses
-- products
-- product_types
-- discount_policies
-- tax_policies
-- ingredient_categories
-- ingredients
-- product_ingredients
-- orders
-- order_items
-- payments
-- payment_splits
-- payment_split_items
-- available_services
-- timeslots
-- reservations
-- reservation_timeslots
+- `users`
+- `roles`
+- `businesses`
+- `products`
+- `product_types`
+- `discount_policies`
+- `tax_policies`
+- `ingredient_categories`
+- `ingredients`
+- `product_ingredients`
+- `orders`
+- `order_items`
+- `payments`
+- `payment_splits`
+- `payment_split_items`
+- `available_services`
+- `timeslots`
+- `reservations`
+- `reservation_timeslots`
 
 ---
 
 # Erasmus+ at Vilnius University
 
-This project was developed during an **Erasmus+ exchange programme** at **Vilnius University** in Vilnius, Lithuania.
+This project was developed during an **Erasmus+ exchange programme** at **Vilnius University** in Vilnius, Lithuania. [web:41][web:50]
 
 The project combined academic study with practical software engineering experience through the development of a production-style full-stack application.
 
@@ -231,8 +231,8 @@ The implementation involved:
 
 For more information:
 
-- [Vilnius University – Erasmus+ Studies](https://mif.vu.lt/lt3/en/studies/exchange-studies/erasmus-studies)
-- [Vilnius University Exchange Opportunities](https://www.vu.lt/en/students/services-for-students/exchange-opportunities)
+- [Vilnius University – Erasmus+ Studies](https://mif.vu.lt/lt3/en/studies/exchange-studies/erasmus-studies) [web:50]
+- [Vilnius University Exchange Opportunities](https://www.vu.lt/en/students/services-for-students/exchange-opportunities) [web:41]
 
 ---
 
@@ -295,7 +295,7 @@ npm start
 
 Navigate to:
 
-```
+```text
 http://localhost:3000
 ```
 
