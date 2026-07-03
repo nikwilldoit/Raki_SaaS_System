@@ -14,6 +14,10 @@ The Business Management feature allows authorized users to view and maintain the
 - Ensures that changes to the business profile are saved and reflected across the application.
 - Provides clear feedback when the business information is successfully updated or when something goes wrong.
 
+<p align="center">
+  <img width="1919" height="648" alt="image" src="https://github.com/user-attachments/assets/ad16947d-0f1b-4db4-bf48-5ee81ec992b0" />
+</p>
+
 ## When to use it
 
 - When the business name or branding changes.
@@ -25,7 +29,3 @@ The Business Management feature allows authorized users to view and maintain the
 
 - Typically used by business owners, managers and admins.
 - Not intended for regular employees or customers.
-
-<p align="center">
-  <img width="1919" height="648" alt="image" src="https://github.com/user-attachments/assets/ad16947d-0f1b-4db4-bf48-5ee81ec992b0" />
-</p>
