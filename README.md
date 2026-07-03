@@ -18,9 +18,6 @@ The application consists of two main repositories/modules:
 
 - **DataBase (MySQL)**  
   - DB package: [`db-structure`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/src/main/resources/db)
-
-- **Techincal Document**  
-  - Document: [`document`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/Raki%20Techincal%20Document.pdf)
 ---
 
 # Backend Domain Modules
