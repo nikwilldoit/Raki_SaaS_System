@@ -15,13 +15,13 @@ The Dashboard is the main home screen of the application that users see after lo
 
 The Dashboard dynamically changes depending on the type of business assigned to the user. Each business type has access only to the features that are relevant to its daily operations.
 
-* **First screenshot:** Dashboard for **Business Type: HAIRDRESSER**.
-  Since a hairdresser operates through appointments rather than food orders, the Dashboard displays features such as **Reservations** and **Create Reservation**, while food-related features like **Order Management** and **Menu Management** are not shown.
+* **First screenshot:** [Dashboard for Business Type: HAIRDRESSER](#business-type-hairdresser). Since a hairdresser operates through appointments rather than food orders, the Dashboard displays features such as **Reservations** and **Create Reservation**, while food-related features like **Order Management** and **Menu Management** are not shown.
 
-* **Second screenshot:** Dashboard for **Business Type: RESTAURANT**.
-  Restaurant businesses focus on managing customer orders and menus, so the Dashboard includes features such as **Order Management**, **Orders List**, **Menu Management**, **Tax Management**, and other restaurant-related management tools.
+* **Second screenshot:** [Dashboard for Business Type: RESTAURANT](#business-type-restaurant). Restaurant businesses focus on managing customer orders and menus, so the Dashboard includes features such as **Order Management**, **Orders List**, **Menu Management**, **Tax Management**, and other restaurant-related management tools.
 
 This behavior ensures that every business sees only the functionality that matches its business model, resulting in a cleaner interface and a more efficient workflow.
+
+---
 
 ## Main actions available from the Dashboard
 
@@ -71,14 +71,17 @@ Depending on the user's role and business type, the Dashboard can show action ca
 * **SuperAdmins**
   Have the widest view, including business selection and high-level management options.
 
-### Business Type: RESTAURANT
+## Business Type: HAIRDRESSER {#business-type-hairdresser}
 
 <p align="center">
   <img width="1198" height="563" alt="Dashboard - Hairdresser" src="https://github.com/user-attachments/assets/e440e18c-de29-4334-b0e8-17197bba53cf" />
 </p>
 
-### Business Type: HAIRDRESSER
+---
+
+## Business Type: RESTAURANT {#business-type-restaurant}
 
 <p align="center">
   <img width="1206" height="516" alt="Dashboard - Restaurant" src="https://github.com/user-attachments/assets/67ae2975-1b6d-4f9a-8b46-2aa24aa539e9" />
 </p>
+
