@@ -23,5 +23,9 @@ The Business Management feature allows authorized users to view and maintain the
 
 ## Who can access it
 
-- Typically used by business owners and managers.
+- Typically used by business owners, managers and admins.
 - Not intended for regular employees or customers.
+
+<p align="center">
+  <img width="1919" height="648" alt="image" src="https://github.com/user-attachments/assets/ad16947d-0f1b-4db4-bf48-5ee81ec992b0" />
+</p>
