@@ -1,4 +1,4 @@
-<img width="1212" height="493" alt="image" src="https://github.com/user-attachments/assets/31f06035-4d73-41f7-abfe-1e403e563786" /># Reservations
+# Reservations
 
 The Reservations feature allows a business to book, review, and adjust appointments for its services. It covers the full flow from selecting a service and employee, through picking a date and time, to confirming, listing, editing, and canceling reservations.
 
@@ -13,8 +13,8 @@ The Reservations feature allows a business to book, review, and adjust appointme
   - Review a summary of the appointment before confirming.
   - Submit the reservation and receive a clear success or error message.
 
-  <p align="center">
-  <img width="1212" height="493" alt="image" src="https://github.com/user-attachments/assets/a6396cf3-6f6e-41f4-bafe-81791585368a" />
+<p align="center">
+  <img width="894" height="905" alt="image" src="https://github.com/user-attachments/assets/8414478b-c750-4a60-8cc3-59199262e461" />
 </p>
 
 - Offers a **Reservations list page** that:
@@ -39,7 +39,7 @@ The Reservations feature allows a business to book, review, and adjust appointme
   - Maintains a clean schedule and avoids conflicting bookings.
 
 <p align="center">
-  <img width="894" height="905" alt="image" src="https://github.com/user-attachments/assets/8414478b-c750-4a60-8cc3-59199262e461" />
+  <img width="1212" height="493" alt="image" src="https://github.com/user-attachments/assets/a6396cf3-6f6e-41f4-bafe-81791585368a" />
 </p>
 
 ## How availability works
