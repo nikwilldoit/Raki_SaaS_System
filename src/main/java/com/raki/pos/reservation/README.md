@@ -1,4 +1,4 @@
-<img width="899" height="368" alt="image" src="https://github.com/user-attachments/assets/ec6e33c4-2f7c-4804-82da-fa715bf25c70" /># Reservations
+# Reservations
 
 The Reservations feature allows a business to book, review, and adjust appointments for its services. It covers the full flow from selecting a service and employee, through picking a date and time, to confirming, listing, editing, and canceling reservations.
 
