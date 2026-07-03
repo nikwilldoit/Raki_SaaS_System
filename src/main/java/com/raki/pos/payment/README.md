@@ -28,14 +28,15 @@ The Payments feature handles how customers pay for their orders in the system. I
 </p>
 
 - Tracks how much of the order has already been paid and how much is left to pay.
+  
+<p align="center">
+  <img width="1879" height="389" alt="image" src="https://github.com/user-attachments/assets/c267b5d3-2445-49b2-bbee-e56a951f0713" />
+</p>
+
 - Once the order is fully paid:
   - Marks the order as closed.
   - Marks all order items as paid.
   - Marks all related payments and splits as completed.
-
-<p align="center">
-  <img width="1879" height="389" alt="image" src="https://github.com/user-attachments/assets/c267b5d3-2445-49b2-bbee-e56a951f0713" />
-</p>
 
 ## How full payments work
 
