@@ -71,13 +71,13 @@ Depending on the user's role and business type, the Dashboard can show action ca
 * **SuperAdmins**
   Have the widest view, including business selection and high-level management options.
 
-### Business Type: HAIRDRESSER
+### Business Type: RESTAURANT
 
 <p align="center">
   <img width="1198" height="563" alt="Dashboard - Hairdresser" src="https://github.com/user-attachments/assets/e440e18c-de29-4334-b0e8-17197bba53cf" />
 </p>
 
-### Business Type: RESTAURANT
+### Business Type: HAIRDRESSER
 
 <p align="center">
   <img width="1206" height="516" alt="Dashboard - Restaurant" src="https://github.com/user-attachments/assets/67ae2975-1b6d-4f9a-8b46-2aa24aa539e9" />
