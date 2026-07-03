@@ -72,7 +72,7 @@ All flows are designed so they can be implemented as REST/JSON APIs described vi
 
 - Customers are seated and ready to order.
 - Employee is authenticated and has permission to create orders.
-- Menu and stock information are up to date; unavailable items are known.
+- Menu and stock information are up to date and unavailable items are known.
 
 **Flow**
 
