@@ -17,7 +17,7 @@ The Staff Management feature allows a business to view and maintain the employee
   - Owners cannot edit other Owners.
 
 <p align="center">
-  <img width="396" height="512" alt="image" src="https://github.com/user-attachments/assets/6039c4a9-f8a5-4d8e-a298-63c546e9ae0b" />
+  <img width="1173" height="424" alt="image" src="https://github.com/user-attachments/assets/1461e7d9-eeed-45e4-ad27-01a9f86db98c" />
 </p>
 
 ## How staff information is managed
@@ -39,7 +39,7 @@ From the staff management screen:
 If there are no employees for the business, the page clearly informs the user that no staff have been found.
 
 <p align="center">
-  <img width="1173" height="424" alt="image" src="https://github.com/user-attachments/assets/1461e7d9-eeed-45e4-ad27-01a9f86db98c" />
+  <img width="396" height="512" alt="image" src="https://github.com/user-attachments/assets/6039c4a9-f8a5-4d8e-a298-63c546e9ae0b" />
 </p>
 
 ## How access is controlled
