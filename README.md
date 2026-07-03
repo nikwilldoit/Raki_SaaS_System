@@ -43,11 +43,11 @@ This specification describes the business logic, data model, and API contracts f
 
 The core functional areas are:
 
-- Order Management: create, modify, cancel, refund orders; split checks, tips, discounts.
+- Order Management: create, modify, cancel, refund orders, split checks, tips, discounts.
 - Service Reservations: create, update, cancel reservations for services, with optional deposits and cancellation fees.
 - System Management: manage products, menus, taxes, discounts, users, roles, and merchant details.
 
-All flows are designed so they can be implemented as REST/JSON APIs described via OpenAPI, backed by a relational database and a set of microservices or modular monolith components.
+All flows are designed so they can be implemented as REST/JSON APIs described via OpenAPI.
 
 ---
 
