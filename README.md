@@ -1,6 +1,6 @@
 # POS Web Application
 
-This project is a full‑stack Point of Sale (POS) web application for small businesses, covering menu management, orders, payments, reservations, staff, taxes and admin tools. It was designed and implemented as part of an Erasmus+ study period at **Vilnius University** (Faculty of Mathematics and Informatics).
+This project is a full‑stack Point of Sale (POS), Software as a Service (SaaS) web application for small businesses, covering menu management, orders, payments, reservations, staff, taxes and admin tools. It was designed and implemented as part of an **Erasmus+** study period at **Vilnius University** (Faculty of Mathematics and Informatics).
 
 ## Overview
 
