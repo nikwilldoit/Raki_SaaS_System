@@ -53,10 +53,6 @@ This makes it possible for a single SuperAdmin account to work across multiple b
 - When a SuperAdmin wants to switch from one business to another to perform administrative tasks.
 - When managing multiple tenants or branches that share a common SuperAdmin user.
 
-## Who typically uses it
-
-- SuperAdmin users responsible for overseeing multiple businesses in the system.
-
 <p align="center">
   <img width="841" height="40" alt="image" src="https://github.com/user-attachments/assets/60733214-8f36-4cae-9bf2-3b14908a445d" />
 </p>
