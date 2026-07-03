@@ -181,7 +181,7 @@ Main components include:
 - JdbcTemplate
 - Log4j2
 - Jakarta Validation
-- JJWT
+- JWT
 
 ---
 
