@@ -1,4 +1,4 @@
-# Super Admin – Business Selection
+# Super Admin
 
 The Super Admin Business Selection feature allows a SuperAdmin user to choose which business they want to work with inside the system. It provides a simple way to switch context so that all dashboard and management features operate on the selected business.
 
