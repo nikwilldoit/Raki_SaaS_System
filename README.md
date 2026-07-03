@@ -263,5 +263,3 @@ This project was designed and developed by:
 
 - [**NIKOLAOS POULOPOULOS**](https://github.com/nikwilldoit)
 - [**EVANGELOS KAMPOURIS**](https://github.com/evangelos-kampouris)
-
-During an Erasmus+ study period at Vilnius University (Faculty of Mathematics and Informatics).
