@@ -16,6 +16,10 @@ The Staff Management feature allows a business to view and maintain the employee
 - Applies basic safety rules, for example:
   - Owners cannot edit other Owners.
 
+<p align="center">
+  <img width="396" height="512" alt="image" src="https://github.com/user-attachments/assets/6039c4a9-f8a5-4d8e-a298-63c546e9ae0b" />
+</p>
+
 ## How staff information is managed
 
 From the staff management screen:
@@ -34,6 +38,10 @@ From the staff management screen:
 
 If there are no employees for the business, the page clearly informs the user that no staff have been found.
 
+<p align="center">
+  <img width="1173" height="424" alt="image" src="https://github.com/user-attachments/assets/1461e7d9-eeed-45e4-ad27-01a9f86db98c" />
+</p>
+
 ## How access is controlled
 
 - **SuperAdmins** can see both owners and employees for the current business.
@@ -51,17 +59,7 @@ If there are no employees for the business, the page clearly informs the user th
 
 - Business owners who manage their team.
 - SuperAdmins who need oversight and control across businesses.
-- Not intended for regular employees or customers, but their accounts and permissions are directly maintained through this feature.
-
-<p align="center">
-  <img width="396" height="512" alt="image" src="https://github.com/user-attachments/assets/6039c4a9-f8a5-4d8e-a298-63c546e9ae0b" />
-</p>
-
-<p align="center">
-  <img width="1173" height="424" alt="image" src="https://github.com/user-attachments/assets/1461e7d9-eeed-45e4-ad27-01a9f86db98c" />
-</p>
 
 <p align="center">
   <img width="907" height="173" alt="image" src="https://github.com/user-attachments/assets/dcee4364-b0d5-4fdc-be55-2bf6f6f9ee9b" />
 </p>
-
