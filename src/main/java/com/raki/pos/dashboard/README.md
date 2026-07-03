@@ -1,77 +1,79 @@
 # Dashboard
 
-The Dashboard is the main home screen of the application that users see after logging in. It provides a clear overview of what they can do in the system and offers quick access to the key features based on their role and the type of business they belong to.
+The Dashboard is the main landing page that users see after logging in. It provides a clear overview of the available functionality and offers quick access to the features that are relevant to the user's role and business type.
 
 ## What this feature does
 
-* Shows a personalized welcome area with the current user's information.
-* Detects whether the user has a business assigned and, if not, prevents access to business-specific features.
-* Adapts what is visible on the screen depending on:
+* Displays a personalized welcome area with the current user's information.
+* Detects whether the user is assigned to a business and, if not, prevents access to business-specific features.
+* Dynamically adapts the available options based on:
 
   * The user's role (Employee, Owner, SuperAdmin).
   * The business type (Restaurant, Café, Bar, Hairdresser, Barbershop, Spa).
 
 ## Dashboard adaptation by Business Type
 
-The Dashboard dynamically changes depending on the type of business assigned to the user. Each business type has access only to the features that are relevant to its daily operations.
+The Dashboard dynamically changes depending on the type of business assigned to the user. Each business type only sees the features that are relevant to its daily operations.
 
-* **First screenshot:** [Dashboard for Business Type: HAIRDRESSER](#business-type-hairdresser). Since a hairdresser operates through appointments rather than food orders, the Dashboard displays features such as **Reservations** and **Create Reservation**, while food-related features like **Order Management** and **Menu Management** are not shown.
+* **First screenshot:** [Dashboard for Business Type: HAIRDRESSER](#business-type-hairdresser). Since hairdressers primarily operate through appointments rather than food orders, the Dashboard displays features such as **Reservations** and **Create Reservation**, while food-related features like **Order Management**, **Orders List**, and **Menu Management** are not available.
 
-* **Second screenshot:** [Dashboard for Business Type: RESTAURANT](#business-type-restaurant). Restaurant businesses focus on managing customer orders and menus, so the Dashboard includes features such as **Order Management**, **Orders List**, **Menu Management**, **Tax Management**, and other restaurant-related management tools.
+* **Second screenshot:** [Dashboard for Business Type: RESTAURANT](#business-type-restaurant). Restaurants focus on customer orders and menu management, so the Dashboard includes features such as **Order Management**, **Orders List**, **Menu Management**, **Tax Management**, and other restaurant-related management tools.
 
-This behavior ensures that every business sees only the functionality that matches its business model, resulting in a cleaner interface and a more efficient workflow.
+This dynamic behavior ensures that each business only sees the functionality that matches its business model, resulting in a cleaner interface and a more efficient workflow.
 
 ---
 
 ## Main actions available from the Dashboard
 
-Depending on the user's role and business type, the Dashboard can show action cards for:
+Depending on the user's role and business type, the Dashboard may display the following action cards:
 
 * **Order Management**
-  Access to creating and handling customer orders for food and drinks.
+  Create and manage customer food and beverage orders.
 
 * **Reservations**
-  Access to viewing and managing reservations for services (e.g., haircuts, spa sessions).
+  View and manage reservations for appointment-based businesses (e.g., hairdressers and spas).
 
 * **Create Reservation**
-  Quick entry point to create a new reservation directly from the home screen.
+  Quickly create a new reservation directly from the Dashboard.
 
 * **Menu Management**
-  Tools to manage products and categories in the menu for food businesses.
+  Manage products and menu categories for food-service businesses.
 
 * **Staff Management**
-  Access to managing employees and their presence in the system.
+  Manage employees and their access to the system.
 
 * **Tax Management**
-  Entry point for managing tax rules and rates used by the business.
+  Configure and maintain the tax rules used by the business.
 
 * **Orders List**
-  Overview of existing orders for monitoring and review.
+  View and monitor existing customer orders.
 
 * **Discount Management**
-  Access to creating and managing discounts applied to orders or products.
+  Create and manage discounts applied to products or orders.
 
 * **Business Management**
-  Access to viewing and updating the main details of the business profile.
+  View and update the business profile and settings.
 
 ## When this feature is used
 
-* Right after login, as the starting point for the user's daily work.
-* When staff need to quickly move between managing orders, reservations, menu, staff, taxes, discounts, or business details.
-* When owners or SuperAdmins want a central place to navigate all management features in one screen.
+* Immediately after login as the starting point for the user's daily work.
+* When staff need quick access to operational features such as orders or reservations.
+* When Owners or SuperAdmins need to manage menus, staff, taxes, discounts, or business information.
 
 ## Who sees what
 
 * **Employees**
-  Typically see only operational features relevant to their work, such as orders and reservations.
+  Typically see only the operational features required for their daily tasks, such as orders and reservations.
 
 * **Owners / Managers**
-  See additional management features such as menu, staff, discounts, and business information.
+  See additional management features, including menu, staff, discounts, taxes, and business information.
 
 * **SuperAdmins**
-  Have the widest view, including business selection and high-level management options.
+  Have the broadest access, including business selection and system-wide management features.
 
-## Business Type: HAIRDRESSER {#business-type-hairdresser}
+---
+
+## Business Type: HAIRDRESSER
 
 <p align="center">
   <img width="1198" height="563" alt="Dashboard - Hairdresser" src="https://github.com/user-attachments/assets/e440e18c-de29-4334-b0e8-17197bba53cf" />
@@ -79,9 +81,8 @@ Depending on the user's role and business type, the Dashboard can show action ca
 
 ---
 
-## Business Type: RESTAURANT {#business-type-restaurant}
+## Business Type: RESTAURANT
 
 <p align="center">
   <img width="1206" height="516" alt="Dashboard - Restaurant" src="https://github.com/user-attachments/assets/67ae2975-1b6d-4f9a-8b46-2aa24aa539e9" />
 </p>
-
