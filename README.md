@@ -66,9 +66,7 @@ pos-backend/
 
 ---
 
-# Features
-
-## Core Business Features
+# Core Business Features
 
 ### Menu & Products
 
