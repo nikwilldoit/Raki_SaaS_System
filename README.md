@@ -2,8 +2,7 @@
 
 This project is a full-stack Point of Sale (POS) Software-as-a-Service (SaaS) web application designed for small businesses. It provides a complete business management solution, including menu management, orders, payments, reservations, staff administration, taxation, and administrative tools.
 
-The project was designed and implemented during an **Erasmus+** study period at **Vilnius University** (Faculty of Mathematics and Informatics). [web:41][web:50]
-
+The project was designed and implemented during an **Erasmus+** study period at **Vilnius University** (Faculty of Mathematics and Informatics), as part of the **Software Design** course taught by Vasilij Savin. [web:41][web:50]
 ---
 
 # Overview
@@ -11,13 +10,13 @@ The project was designed and implemented during an **Erasmus+** study period at 
 The application consists of two main repositories/modules:
 
 - **Frontend (React)** – customer- and staff-facing user interface  
-  - Frontend source: [`pos-frontend/`](./pos-frontend/)
-  - Main React code: [`pos-frontend/src/Components/`](./pos-frontend/src/Components/)
+  - Frontend code: [`frontend-path`](./pos-frontend/src/Components/)
 
 - **Backend (Spring Boot)** – REST APIs, business logic, authentication, and persistence  
-  - Backend source: [`pos-backend/`](./pos-backend/)
-  - Main application package: [`pos-backend/src/main/java/com/raki/pos/`](./pos-backend/src/main/java/com/raki/pos/)
+  - Backend package: [`backend-path`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/src/main/java/com/raki/pos)
 
+- **DataBase (MySQL)**  
+  - DB package: [`db-structure`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/src/main/resources/db)
 ---
 
 # Backend Domain Modules
@@ -26,19 +25,19 @@ Each major backend module includes its own README for a more detailed explanatio
 
 | Module | Documentation |
 |--------|---------------|
-| Admin | [`src/main/java/com/raki/pos/admin/README.md`](Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/admin/README.md) |
-| Authentication & Security | [`src/main/java/com/raki/pos/auth/README.md`](./pos-backend/src/main/java/com/raki/pos/auth/README.md) |
-| Business | [`src/main/java/com/raki/pos/business/README.md`](./pos-backend/src/main/java/com/raki/pos/business/README.md) |
-| Dashboard | [`src/main/java/com/raki/pos/dashboard/README.md`](./pos-backend/src/main/java/com/raki/pos/dashboard/README.md) |
-| Discount Policies | [`src/main/java/com/raki/pos/discount/README.md`](./pos-backend/src/main/java/com/raki/pos/discount/README.md) |
-| Menu & Ingredient Categories | [`src/main/java/com/raki/pos/menu/README.md`](./pos-backend/src/main/java/com/raki/pos/menu/README.md) |
-| Orders | [`src/main/java/com/raki/pos/order/README.md`](./pos-backend/src/main/java/com/raki/pos/order/README.md) |
-| Payments | [`src/main/java/com/raki/pos/payment/README.md`](./pos-backend/src/main/java/com/raki/pos/payment/README.md) |
-| Products | [`src/main/java/com/raki/pos/product/README.md`](./pos-backend/src/main/java/com/raki/pos/product/README.md) |
-| Reservations | [`src/main/java/com/raki/pos/reservation/README.md`](./pos-backend/src/main/java/com/raki/pos/reservation/README.md) |
-| Staff Management | [`src/main/java/com/raki/pos/staff/README.md`](./pos-backend/src/main/java/com/raki/pos/staff/README.md) |
-| Tax Policies | [`src/main/java/com/raki/pos/tax/README.md`](./pos-backend/src/main/java/com/raki/pos/tax/README.md) |
-| Database Schema | [`src/main/resources/db/README.md`](./pos-backend/src/main/resources/db/README.md) |
+| Admin | [`src/main/java/com/raki/pos/admin/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/admin/README.md) |
+| Authentication & Security | [`src/main/java/com/raki/pos/auth/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/auth/README.md) |
+| Business | [`src/main/java/com/raki/pos/business/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/business/README.md) |
+| Dashboard | [`src/main/java/com/raki/pos/dashboard/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/dashboard/README.md) |
+| Discount Policies | [`src/main/java/com/raki/pos/discount/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/discount/README.md) |
+| Menu & Ingredient Categories | [`src/main/java/com/raki/pos/menu/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/menu/README.md) |
+| Orders | [`src/main/java/com/raki/pos/order/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/order/README.md) |
+| Payments | [`src/main/java/com/raki/pos/payment/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/payment/README.md) |
+| Products | [`src/main/java/com/raki/pos/product/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/product/README.md) |
+| Reservations | [`src/main/java/com/raki/pos/reservation/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/reservation/README.md) |
+| Staff Management | [`src/main/java/com/raki/pos/staff/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/staff/README.md) |
+| Tax Policies | [`src/main/java/com/raki/pos/tax/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/tax/README.md) |
+| Database Schema | [`src/main/resources/db/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/resources/db/README.md) |
 
 Repository layout:
 
@@ -256,3 +255,14 @@ root/
 # Getting Started
 
 [Project Setup Instructions (Spring Boot + React)](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/setup-instructions.md)
+
+---
+
+# Authors
+
+This project was designed and developed by:
+
+- [**NIKOLAOS POULOPOULOS**](https://github.com/nikwilldoit)
+- [**EVANGELOS KAMPOURIS**](https://github.com/evangelos-kampouris)
+
+During an Erasmus+ study period at Vilnius University (Faculty of Mathematics and Informatics).
