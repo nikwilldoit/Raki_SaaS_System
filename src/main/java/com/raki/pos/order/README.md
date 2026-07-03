@@ -25,7 +25,7 @@ The Orders feature allows staff to create, review, and manage customer orders fo
   <img width="515" height="648" alt="image" src="https://github.com/user-attachments/assets/a21b95bf-18ce-4605-a3c8-6254875a4d2e" />
 </p>
 
-- Connects orders with [payments](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/payment/README.md):
+- Connects orders with [Payments](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/payment/README.md):
   - From the order list or order creation screen, staff can proceed to a payment screen for that order.
   - After payment, order status moves from OPEN to CLOSED.
   - Orders that are closed and have payments can be refunded when necessary.
