@@ -1,233 +1,302 @@
 # POS Web Application
 
-This project is a full‑stack Point of Sale (POS), Software as a Service (SaaS) web application for small businesses, covering menu management, orders, payments, reservations, staff, taxes and admin tools. It was designed and implemented as part of an **Erasmus+** study period at **Vilnius University** (Faculty of Mathematics and Informatics).
+This project is a full-stack Point of Sale (POS) Software-as-a-Service (SaaS) web application designed for small businesses. It provides a complete business management solution, including menu management, orders, payments, reservations, staff administration, taxation, and administrative tools.
 
-## Overview
+The project was designed and implemented during an **Erasmus+** study period at **Vilnius University** (Faculty of Mathematics and Informatics).
 
-The application is split into multiple modules/repositories:
+---
 
-- **Frontend (React)** – customer‑ and staff‑facing UI  
-  - Frontend codebase: `pos-frontend/` (e.g. `src/Components/...`)
+# Overview
 
-- **Backend (Spring Boot)** – REST APIs, business logic, persistence  
-  - Backend codebase: `pos-backend/` (core app under `src/main/java/com/raki/pos/...`)
+The application consists of two main repositories/modules:
 
-### Backend domain modules (per package)
+- **Frontend (React)** – Customer- and staff-facing user interface
+  - Frontend source: [`pos-frontend/`](./pos-frontend/)
+  - Main React code: [`pos-frontend/src/Components/`](./pos-frontend/src/Components/)
 
-Κάθε βασικό κομμάτι λειτουργικότητας έχει το δικό του README μέσα στο backend, ώστε να μπορείς να κάνεις deep‑dive όταν κάποιος κάνει browse στον κώδικα:
+- **Backend (Spring Boot)** – REST APIs, business logic, authentication, and persistence
+  - Backend source: [`pos-backend/`](./pos-backend/)
+  - Main application package: [`src/main/java/com/raki/pos/`](./pos-backend/src/main/java/com/raki/pos/)
 
-- **Admin / SuperAdmin**
-  - Path: `src/main/java/com/raki/pos/admin/README.md`
-  - Περιγράφει: SuperAdmin business selection, context switching, admin flows.
+---
 
-- **Authentication & Security**
-  - Path: `src/main/java/com/raki/pos/auth/README.md`
-  - Περιγράφει: login, JWT generation/validation, security filter, health‑checks.
+# Backend Domain Modules
 
-- **Business**
-  - Path: `src/main/java/com/raki/pos/business/README.md`
-  - Περιγράφει: business entities, business type, high‑level configuration per business.
+Each major backend module includes its own README for a more detailed explanation of its architecture, responsibilities, and implementation.
 
-- **Dashboard**
-  - Path: `src/main/java/com/raki/pos/dashboard/README.md`
-  - Περιγράφει: dashboard endpoints, aggregation of data (orders, reservations, staff, etc.) για την αρχική οθόνη.
+| Module | Documentation |
+|---------|---------------|
+| Admin / SuperAdmin | [`src/main/java/com/raki/pos/admin/README.md`](./pos-backend/src/main/java/com/raki/pos/admin/README.md) |
+| Authentication & Security | [`src/main/java/com/raki/pos/auth/README.md`](./pos-backend/src/main/java/com/raki/pos/auth/README.md) |
+| Business | [`src/main/java/com/raki/pos/business/README.md`](./pos-backend/src/main/java/com/raki/pos/business/README.md) |
+| Dashboard | [`src/main/java/com/raki/pos/dashboard/README.md`](./pos-backend/src/main/java/com/raki/pos/dashboard/README.md) |
+| Discount Policies | [`src/main/java/com/raki/pos/discount/README.md`](./pos-backend/src/main/java/com/raki/pos/discount/README.md) |
+| Menu & Ingredient Categories | [`src/main/java/com/raki/pos/menu/README.md`](./pos-backend/src/main/java/com/raki/pos/menu/README.md) |
+| Orders | [`src/main/java/com/raki/pos/order/README.md`](./pos-backend/src/main/java/com/raki/pos/order/README.md) |
+| Payments | [`src/main/java/com/raki/pos/payment/README.md`](./pos-backend/src/main/java/com/raki/pos/payment/README.md) |
+| Products | [`src/main/java/com/raki/pos/product/README.md`](./pos-backend/src/main/java/com/raki/pos/product/README.md) |
+| Reservations | [`src/main/java/com/raki/pos/reservation/README.md`](./pos-backend/src/main/java/com/raki/pos/reservation/README.md) |
+| Staff Management | [`src/main/java/com/raki/pos/staff/README.md`](./pos-backend/src/main/java/com/raki/pos/staff/README.md) |
+| Tax Policies | [`src/main/java/com/raki/pos/tax/README.md`](./pos-backend/src/main/java/com/raki/pos/tax/README.md) |
+| Database Schema | [`src/main/resources/db/README.md`](./pos-backend/src/main/resources/db/README.md) |
 
-- **Discount Policies**
-  - Path: `src/main/java/com/raki/pos/discount/README.md`
-  - Περιγράφει: discount rules (percent/amount), scopes (product/service/both), πώς επηρεάζουν τιμές.
-
-- **Menu & Ingredient Categories**
-  - Path: `src/main/java/com/raki/pos/menu/README.md`
-  - Περιγράφει: ingredient categories, ingredients, product extras/options, single/multi‑select options.
-
-- **Orders**
-  - Path: `src/main/java/com/raki/pos/order/README.md`
-  - Περιγράφει: order lifecycle, order items, payment status, πώς συνδέεται με payments και menu.
-
-- **Payments**
-  - Path: `src/main/java/com/raki/pos/payment/README.md`
-  - Περιγράφει: full και split payments, tips, payment history, closing orders, status των payments/splits.
-
-- **Products**
-  - Path: `src/main/java/com/raki/pos/product/README.md`
-  - Περιγράφει: products, product types, tax/discount pipeline, σύνδεση με ingredient extras.
-
-- **Reservations**
-  - Path: `src/main/java/com/raki/pos/reservation/README.md`
-  - Περιγράφει: services, timeslots, reservation creation/update/delete, availability per business/employee.
-
-- **Staff Management**
-  - Path: `src/main/java/com/raki/pos/staff/README.md`
-  - Περιγράφει: users/staff, roles (Owner, Employee, SuperAdmin), status (ACTIVE, SUSPENDED, FIRED), κανόνες πρόσβασης.
-
-- **Tax Policies**
-  - Path: `src/main/java/com/raki/pos/tax/README.md`
-  - Περιγράφει: tax policy definitions, tax types (STANDARD, REDUCED, ZERO), πώς εφαρμόζονται στο price pipeline.
-
-- **Database / Schema**
-  - Path: `src/main/resources/db/README.md`
-  - Περιγράφει: βασικά tables, σχέσεις, seed data και migration στρατηγική (SQL scripts ή flyway/liquibase).
-
-Έτσι, ο αναγνώστης μπορεί από το κεντρικό README να πάει σε κάθε υποσύστημα:
+Repository layout:
 
 ```text
 pos-backend/
-└─ src/
-   └─ main/
-      ├─ java/
-      │   └─ com/raki/pos/
-      │       ├─ admin/README.md
-      │       ├─ auth/README.md
-      │       ├─ business/README.md
-      │       ├─ dashboard/README.md
-      │       ├─ discount/README.md
-      │       ├─ menu/README.md
-      │       ├─ order/README.md
-      │       ├─ payment/README.md
-      │       ├─ product/README.md
-      │       ├─ reservation/README.md
-      │       ├─ staff/README.md
-      │       └─ tax/README.md
-      └─ resources/
-          └─ db/README.md
+└── src/
+    └── main/
+        ├── java/
+        │   └── com/raki/pos/
+        │       ├── admin/
+        │       ├── auth/
+        │       ├── business/
+        │       ├── dashboard/
+        │       ├── discount/
+        │       ├── menu/
+        │       ├── order/
+        │       ├── payment/
+        │       ├── product/
+        │       ├── reservation/
+        │       ├── staff/
+        │       └── tax/
+        └── resources/
+            └── db/
 ```
 
-## Features
+---
 
-### Core business features
+# Features
 
-- **Menu & Products**
-  - Create, edit and delete products with tax categories, subcategories and ingredient options.
-  - Define ingredient categories (e.g. toppings, extras, sizes) and attach them to products.
-  - Use discount and tax policies to compute effective prices.
+## Core Business Features
 
-- **Orders & Payments**
-  - Support full‑bill payments and split payments by item, payer and method (cash/card/gift card).
-  - Track tips and display payment history per order.
-  - Automatically close orders when fully paid and mark all items as paid.
+### Menu & Products
 
-- **Reservations**
-  - Offer service bookings with available services, employees and time slots.
-  - Show availability per day and per employee.
-  - Create, update and cancel reservations, freeing time slots when needed.
+- Create, edit, and delete products.
+- Configure tax categories and product categories.
+- Define ingredient categories (toppings, extras, sizes, etc.).
+- Attach optional ingredients to products.
+- Apply tax and discount policies automatically.
 
-- **Staff Management**
-  - List staff for the current business (Owners, Employees).
-  - Edit staff details, roles and status (ACTIVE, SUSPENDED, FIRED).
-  - Enforce permissions (e.g. Owners cannot edit other Owners).
+### Orders & Payments
 
-- **Tax Policies**
-  - Configure named tax policies (e.g. “VAT 24%”) with a rate and type (STANDARD / REDUCED / ZERO).
-  - Apply taxes in the product price pipeline before discounts.
+- Create and manage customer orders.
+- Support both full and split payments.
+- Split bills by payer, item, or payment method.
+- Track tips and payment history.
+- Automatically close orders once fully paid.
 
-- **Admin / SuperAdmin**
-  - SuperAdmin users can switch between businesses by name.
-  - After selection, all dashboards and management screens operate in the chosen business context.
+### Reservations
 
-- **Authentication & Security**
-  - Email/password login endpoint that returns a JWT token.
-  - JWT‑based request authentication via a custom filter.
-  - Health‑check endpoints for connectivity and deployment checks.
+- Manage service bookings.
+- Configure employees, services, and available time slots.
+- Display daily and employee availability.
+- Create, update, and cancel reservations.
 
-### Frontend
+### Staff Management
 
-The UI is built with **React** and focuses on clarity and usability for staff:
+- Manage Owners and Employees.
+- Update staff roles and employment status.
+- Enforce role-based permissions.
 
-- Separate pages for:
-  - Menu dashboard and product/ingredient management.
-  - Payment summary, split payments and payment overview per order.
-  - Reservation creation wizard, reservation list and reservation edit dialog.
-  - Staff management and SuperAdmin business selection.
-- Uses fetch with bearer tokens for secure API calls.
-- Implements step‑by‑step flows (e.g. reservation creation: customer → service/employee → time slot → confirmation).
+### Tax Policies
 
-### Backend
+- Create reusable tax policies.
+- Support STANDARD, REDUCED, and ZERO tax rates.
+- Integrate tax calculations into product pricing.
 
-The backend is built with **Spring Boot** and **Spring Security**:
+### Admin / SuperAdmin
 
-- REST controllers per domain (products, menu, reservations, payments, staff, taxes, admin, auth).
-- Business logic in service classes, with transactional boundaries where needed.
-- Persistence via **JdbcTemplate** and SQL, mapped to DTOs and model classes.
-- JWT utilities for token creation, validation and claim extraction.
-- Security filter that populates the `SecurityContext` based on the JWT token.
+- Switch between businesses.
+- Manage multiple business environments.
+- Access dashboards within the selected business context.
 
-## Technologies
+### Authentication & Security
 
-### Frontend
+- Email/password authentication.
+- JWT token generation and validation.
+- Secure REST APIs.
+- Health-check endpoints.
 
-- **React** (functional components, hooks: `useState`, `useEffect`, `useMemo`)
-- **React Router** for navigation (dashboard, payments, reservations, menu, admin)
-- **CSS Modules / custom CSS** for styling (e.g. `Payment.css`, `ManageProducts.css`, `ReservationCreatePage.css`)
-- Native **fetch API** for HTTP requests with `Authorization: Bearer <token>`
+---
 
-### Backend
+# Frontend
 
-- **Java 17+** (ή η έκδοση που χρησιμοποιείς)
-- **Spring Boot**
-  - Spring Web (REST controllers)
-  - Spring Security (JWT‑based authentication)
-- **JdbcTemplate** for database access with SQL queries
-- **Log4j2** for logging
-- **Jakarta Validation** (`@Valid`, `@NotBlank`, `@NotNull`, `@Min`) for request DTOs
-- **JJWT** (`io.jsonwebtoken`) for JWT handling
+The frontend is built with **React** and focuses on usability for both staff and administrators.
 
-### Database
+Features include:
 
-- Relational database (π.χ. PostgreSQL / MySQL – συμπλήρωσε ανάλογα) με πίνακες όπως:
-  - `users`, `roles`, `businesses`
-  - `products`, `product_types`, `discount_policies`, `tax_policies`
-  - `ingredient_categories`, `ingredients`, `product_ingredients`
-  - `orders`, `order_items`, `payments`, `payment_splits`, `payment_split_items`
-  - `available_services`, `timeslots`, `reservations`, `reservation_timeslots`
+- Menu management
+- Product management
+- Ingredient management
+- Payment overview
+- Split payment interface
+- Reservation wizard
+- Reservation management
+- Staff administration
+- SuperAdmin business selection
 
-_Προσαρμόσε τα ονόματα/DB engine αν είναι διαφορετικά._
+Implementation highlights:
 
-## Erasmus at Vilnius University
+- Functional React components
+- React Hooks
+- Fetch API
+- JWT Bearer authentication
+- Multi-step workflows for reservations and payments
 
-This application was developed during an **Erasmus+ exchange** at **Vilnius University** in Vilnius, Lithuania, as part of studies in software engineering / information systems. The Erasmus+ programme supports students to study abroad at partner universities and gain international experience in their field. [web:41][web:50]
+---
 
-Working on this POS web application at Vilnius University combined:
+# Backend
 
-- Practical experience in full‑stack web development (React + Spring Boot).
-- Realistic business workflows (orders, payments, bookings, staff, taxes).
-- International collaboration and academic supervision under the Erasmus+ framework.
+The backend is built with **Spring Boot** and **Spring Security**.
 
-You can find more about Vilnius University and its Erasmus+ opportunities on the official site:
-- [Vilnius University – Erasmus+ studies](https://mif.vu.lt/lt3/en/studies/exchange-studies/erasmus-studies) [web:50]
-- [Vilnius University exchange opportunities](https://www.vu.lt/en/students/services-for-students/exchange-opportunities) [web:41]
+Main components include:
 
-## Repository structure
+- REST Controllers
+- Service layer
+- DTOs
+- SQL persistence using JdbcTemplate
+- JWT authentication
+- Security filters
+- Transaction management
 
-Παράδειγμα δομής για monorepo με frontend + backend:
+---
+
+# Technologies
+
+## Frontend
+
+- React
+- React Router
+- CSS Modules / Custom CSS
+- Fetch API
+- JavaScript (ES6+)
+
+---
+
+## Backend
+
+- Java 17+
+- Spring Boot
+- Spring Web
+- Spring Security
+- JdbcTemplate
+- Log4j2
+- Jakarta Validation
+- JJWT
+
+---
+
+## Database
+
+Relational database (PostgreSQL or MySQL) including tables such as:
+
+- users
+- roles
+- businesses
+- products
+- product_types
+- discount_policies
+- tax_policies
+- ingredient_categories
+- ingredients
+- product_ingredients
+- orders
+- order_items
+- payments
+- payment_splits
+- payment_split_items
+- available_services
+- timeslots
+- reservations
+- reservation_timeslots
+
+---
+
+# Erasmus+ at Vilnius University
+
+This project was developed during an **Erasmus+ exchange programme** at **Vilnius University** in Vilnius, Lithuania.
+
+The project combined academic study with practical software engineering experience through the development of a production-style full-stack application.
+
+The implementation involved:
+
+- Full-stack web development with React and Spring Boot
+- REST API design
+- Authentication and authorization
+- Database design
+- Business workflow implementation
+- Software architecture
+- International collaboration under the Erasmus+ programme
+
+For more information:
+
+- [Vilnius University – Erasmus+ Studies](https://mif.vu.lt/lt3/en/studies/exchange-studies/erasmus-studies)
+- [Vilnius University Exchange Opportunities](https://www.vu.lt/en/students/services-for-students/exchange-opportunities)
+
+---
+
+# Repository Structure
 
 ```text
 root/
-├─ README.md                # Main overview (αυτό το αρχείο)
-├─ pos-frontend/            # React app
-├─ pos-backend/             # Spring Boot backend
-│  └─ src/
-│     └─ main/
-│        ├─ java/com/raki/pos/...  # Domain packages + READMEs
-│        └─ resources/db/README.md # DB schema/docs
-├─ docs/                    # Extra documentation, diagrams
-└─ scripts/                 # Helper scripts (build, deploy, seed)
+├── README.md
+├── pos-frontend/
+├── pos-backend/
+│   └── src/
+│       └── main/
+│           ├── java/
+│           └── resources/
+├── docs/
+└── scripts/
 ```
 
-## Getting started
+---
 
-1. **Clone the repositories**
-   - Frontend: `git clone <frontend-repo-url>`
-   - Backend: `git clone <backend-repo-url>`
+# Getting Started
 
-2. **Configure environment**
-   - Set database connection and JWT secret in backend configuration.
-   - Adjust API base URL in frontend (`http://localhost:8080` by default).
+## 1. Clone the repositories
 
-3. **Run backend**
-   - `mvn spring-boot:run` ή μέσω IDE (run Application class).
+```bash
+git clone <frontend-repository-url>
+git clone <backend-repository-url>
+```
 
-4. **Run frontend**
-   - `npm install`
-   - `npm start`
+---
 
-5. Open the app in your browser (typically `http://localhost:3000`) and log in with a test user.
+## 2. Configure the environment
+
+- Configure your database connection.
+- Set the JWT secret in the backend configuration.
+- Update the frontend API URL if necessary (default: `http://localhost:8080`).
+
+---
+
+## 3. Run the backend
+
+```bash
+mvn spring-boot:run
+```
+
+or start the Spring Boot application from your IDE.
+
+---
+
+## 4. Run the frontend
+
+```bash
+npm install
+npm start
+```
+
+---
+
+## 5. Open the application
+
+Navigate to:
+
+```
+http://localhost:3000
+```
+
+and log in using a test account.
