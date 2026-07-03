@@ -44,7 +44,7 @@ Once a business is selected:
 This makes it possible for a single SuperAdmin account to work across multiple businesses without needing separate logins.
 
 <p align="center">
-  <img width="1320" height="796" alt="image" src="https://github.com/user-attachments/assets/41d3417d-201c-4565-8435-c8b158e50249" />
+  <img width="1265" height="743" alt="image" src="https://github.com/user-attachments/assets/63fa0149-62e1-4b7c-ad08-2b4b6a5d24a1" />
 </p>
 
 ## When this feature is used
