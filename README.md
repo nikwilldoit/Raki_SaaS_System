@@ -213,7 +213,7 @@ Relational database (MySQL) including tables such as:
 
 # Erasmus+ at Vilnius University
 
-This project was developed during an **Erasmus+ exchange programme** at **Vilnius University** in Vilnius, Lithuania. [web:41][web:50]
+This project was developed during an **Erasmus+ exchange programme** at **Vilnius University** in Vilnius, Lithuania.
 
 The project combined academic study with practical software engineering experience through the development of a production-style full-stack application.
 
