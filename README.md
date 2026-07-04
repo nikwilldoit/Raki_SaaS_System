@@ -8,7 +8,7 @@ The project was designed and implemented during an **Erasmus+** study period at 
 
 # Overview
 
-The application consists of two main repositories/modules:
+The application consists of two main modules:
 
 - **Frontend (React)** – "customer" and "staff-facing" user interface  
   - Frontend code: [`frontend-path`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/front_end/src/Components)
