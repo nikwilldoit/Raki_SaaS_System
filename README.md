@@ -224,8 +224,7 @@ root/
 │       └── main/
 │           ├── java/
 │           └── resources/
-├── docs/
-└── scripts/
+└── docs/
 ```
 
 ---
