@@ -1,6 +1,6 @@
 # **Raki** - Full-Stack POS SaaS Web Application
 
-This project is a full-stack Point of Sale (POS), Software-as-a-Service (SaaS) web application designed for small businesses. It provides a complete business management solution, including menu management, orders, payments, reservations, staff administration, taxation, and administrative tools.
+**Raki** is a full-stack Point of Sale (POS), Software-as-a-Service (SaaS) web application designed for small businesses. It provides a complete business management solution, including menu management, orders, payments, reservations, staff administration, taxation, and administrative tools.
 
 The project was designed and implemented during an **Erasmus+** study period at **Vilnius University** (Faculty of Mathematics and Informatics), as part of the **Software Design** course taught by [**Vasilij Savin**](https://www.old.vu.lt/studijos/edukaciniu-kompetenciju-centras/vu-mentorystes-programa-destytojams/mentoriai-d/vasilij-savin).
 
