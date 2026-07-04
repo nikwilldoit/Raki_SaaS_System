@@ -39,7 +39,6 @@ Each major backend module includes its own README for a more detailed explanatio
 | Staff Management | [`src/main/java/com/raki/pos/staff/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/staff/README.md) |
 | Tax Policies | [`src/main/java/com/raki/pos/tax/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/java/com/raki/pos/tax/README.md) |
 | Database Schema | [`src/main/resources/db/README.md`](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/resources/db/README.md) |
-| Raki Techincal Document | [`Techincal Document`](https://docs.google.com/document/d/1_aX5mdczC1d6IaXAb771XPAvOzxKs4MX0h7XCX6KBYM/edit?tab=t.0) |
 
 Repository layout:
 
