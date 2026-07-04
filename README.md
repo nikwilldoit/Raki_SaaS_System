@@ -187,7 +187,7 @@ Implementation highlights:
 
 ## Database
 
-Relational database (MySQL) including tables such as:
+Relational [Database](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/src/main/resources/db/README.md) (MySQL) including tables such as:
 
 <p align="center">
   <img width="147" height="369" alt="image" src="https://github.com/user-attachments/assets/4074efea-9105-4087-8e92-bcf7004c3840" />
