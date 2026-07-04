@@ -14,7 +14,7 @@ The application consists of two main modules:
   - Backend package: [`backend-path`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/src/main/java/com/raki/pos)
     
 - **Frontend (React)** – "customer" and "staff-facing" user interface  
-  - Frontend code: [`frontend-path`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/front_end/src/Components)
+  - Frontend package: [`frontend-path`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/front_end/src/Components)
     
 - **DataBase (MySQL)**  
   - DB package: [`db-structure`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/src/main/resources/db)
