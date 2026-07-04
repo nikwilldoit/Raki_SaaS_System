@@ -257,5 +257,5 @@ root/
 
 This project was designed and developed by:
 
-- [**NIKOLAOS POULOPOULOS**](https://github.com/nikwilldoit)
-- [**EVANGELOS KAMPOURIS**](https://github.com/evangelos-kampouris)
+- [**Nikolaos Poulopoulos**](https://github.com/nikwilldoit)
+- [**Evangelos Kampouris**](https://github.com/evangelos-kampouris)
