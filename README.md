@@ -118,6 +118,22 @@ pos-backend/
 
 ---
 
+# Backend
+
+The backend is built with **Spring Boot** and **Spring Security**.
+
+Main components include:
+
+- REST controllers
+- Service layer
+- DTOs
+- SQL persistence using `JdbcTemplate`
+- JWT authentication
+- Security filters
+- Transaction management
+
+---
+
 # Frontend
 
 The frontend is built with **React** and focuses on usability for both staff and administrators.
@@ -141,22 +157,6 @@ Implementation highlights:
 - Fetch API
 - JWT Bearer authentication
 - Multi-step workflows for reservations and payments
-
----
-
-# Backend
-
-The backend is built with **Spring Boot** and **Spring Security**.
-
-Main components include:
-
-- REST controllers
-- Service layer
-- DTOs
-- SQL persistence using `JdbcTemplate`
-- JWT authentication
-- Security filters
-- Transaction management
 
 ---
 
