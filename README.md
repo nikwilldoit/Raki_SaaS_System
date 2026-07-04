@@ -232,3 +232,11 @@ root/
 # Getting Started
 
 [Project Setup Instructions (Spring Boot + React)](https://github.com/nikwilldoit/Raki_SaaS_System/blob/main/setup-instructions.md)
+
+# Authors
+
+This project was designed and developed by:
+
+- [**Nikolaos Poulopoulos**](https://github.com/nikwilldoit)
+- [**Evangelos Kampouris**](https://github.com/evangelos-kampouris)
+  
