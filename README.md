@@ -104,7 +104,7 @@ pos-backend/
 - Support STANDARD, REDUCED, and ZERO tax rates.
 - Integrate tax calculations into product pricing.
 
-### Admin / SuperAdmin
+### Admin
 
 - Switch between businesses.
 - Manage multiple business environments.
@@ -115,7 +115,6 @@ pos-backend/
 - Email/password authentication.
 - JWT token generation and validation.
 - Secure REST APIs.
-- Health-check endpoints.
 
 ---
 
