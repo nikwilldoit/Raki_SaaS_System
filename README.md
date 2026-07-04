@@ -1,6 +1,6 @@
 # **Raki** - Full-Stack POS SaaS Web Application
 
-**Raki** is a full-stack Point of Sale (POS), Software-as-a-Service (SaaS) web application designed for small businesses. It provides a complete business management solution, including menu management, orders, payments, reservations, staff administration, taxation, and administrative tools.
+**Raki** is a **Full-Stack** Point of Sale **(POS)**, Software-as-a-Service **(SaaS)** web application designed for small businesses. It provides a complete business management solution, including menu management, orders, payments, reservations, staff administration, taxation, and administrative tools.
 
 The project was designed and implemented during an **Erasmus+** study period at **Vilnius University** (Faculty of Mathematics and Informatics), as part of the **Software Design** course taught by [**Vasilij Savin**](https://www.old.vu.lt/studijos/edukaciniu-kompetenciju-centras/vu-mentorystes-programa-destytojams/mentoriai-d/vasilij-savin).
 
@@ -136,7 +136,7 @@ Main components include:
 
 # Frontend
 
-The frontend is built with **React** and focuses on usability for both staff and administrators.
+The frontend is built with **React**.
 
 Features include:
 
@@ -148,7 +148,7 @@ Features include:
 - Reservation wizard  
 - Reservation management  
 - Staff administration  
-- SuperAdmin business selection  
+- Admin business selection  
 
 Implementation highlights:
 
@@ -161,16 +161,6 @@ Implementation highlights:
 ---
 
 # Technologies
-
-## Frontend
-
-- React
-- React Router
-- CSS Modules / Custom CSS
-- Fetch API
-- JavaScript (ES6+)
-
----
 
 ## Backend
 
@@ -185,29 +175,23 @@ Implementation highlights:
 
 ---
 
+## Frontend
+
+- React
+- React Router
+- CSS Modules / Custom CSS
+- Fetch API
+- JavaScript (ES6+)
+
+---
+
 ## Database
 
 Relational database (MySQL) including tables such as:
 
-- `users`
-- `roles`
-- `businesses`
-- `products`
-- `product_types`
-- `discount_policies`
-- `tax_policies`
-- `ingredient_categories`
-- `ingredients`
-- `product_ingredients`
-- `orders`
-- `order_items`
-- `payments`
-- `payment_splits`
-- `payment_split_items`
-- `available_services`
-- `timeslots`
-- `reservations`
-- `reservation_timeslots`
+<p align="center">
+  <img width="147" height="369" alt="image" src="https://github.com/user-attachments/assets/4074efea-9105-4087-8e92-bcf7004c3840" />
+</p>
 
 ---
 
@@ -215,11 +199,11 @@ Relational database (MySQL) including tables such as:
 
 This project was developed during an **Erasmus+ exchange programme** at **Vilnius University** in Vilnius, Lithuania.
 
-The project combined academic study with practical software engineering experience through the development of a production-style full-stack application.
+The project combined academic study with practical software engineering experience through the development of a production-ready **Full-Stack** application.
 
-The implementation involved:
+### The implementation involved:
 
-- Full-stack web development with React and Spring Boot
+- Full-Stack web development with React and Spring Boot
 - REST API design
 - Authentication and authorization
 - Database design
