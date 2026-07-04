@@ -83,6 +83,7 @@ pos-backend/
 - Split bills by payer, item, or payment method.
 - Track tips and payment history.
 - Automatically close orders once fully paid.
+- **Planned** integration with **Stripe** to support secure online payment processing.
 
 ### Reservations
 
