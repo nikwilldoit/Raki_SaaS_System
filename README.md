@@ -10,10 +10,10 @@ The project was designed and implemented during an **Erasmus+** study period at 
 
 The application consists of two main modules:
 
-- **Backend (Spring Boot)** – REST APIs, business logic, authentication, and persistence  
+- **Backend (Spring Boot)** - REST APIs, business logic, authentication, and persistence  
   - Backend package: [`backend-path`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/src/main/java/com/raki/pos)
     
-- **Frontend (React)** – "customer" and "staff-facing" user interface  
+- **Frontend (React)** - "customer" and "staff-facing" user interface  
   - Frontend package: [`frontend-path`](https://github.com/nikwilldoit/Raki_SaaS_System/tree/main/front_end/src/Components)
     
 - **DataBase (MySQL)**  
