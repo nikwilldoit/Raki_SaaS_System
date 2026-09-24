@@ -177,7 +177,7 @@ const ManageProducts = ({ userData, onLogout }) => {
             .catch(() => setIngredientsForSelectedCategory([]));
     };
 
-    // toggle with full object, to know categoryId & name
+    //toggle with full object, to know categoryId & name
     const toggleIngredientSelection = (ingredient) => {
         setEditingProduct((prev) => {
             const exists = prev.ingredients.some(
