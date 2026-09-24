@@ -89,7 +89,7 @@
     color: #e02424;
 }
 
-/* Modals (reuse styles από categories) */
+/* Modals (reuse styles from categories) */
 
 .modal-backdrop {
     position: fixed;
@@ -197,7 +197,7 @@
     gap: 6px;
 }
 
-/* ήδη είχαμε */
+/* already had */
 .chip-small {
     font-size: 12px;
     padding: 3px 8px;
