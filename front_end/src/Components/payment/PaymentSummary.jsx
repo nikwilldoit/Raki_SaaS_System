@@ -1,4 +1,3 @@
-// src/Components/payment/PaymentSummary.jsx
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import './Payment.css';
@@ -46,7 +45,7 @@ const PaymentSummary = () => {
                     0
                 );
 
-                // Αν έρχεσαι από createOrder μπορείς να σεβαστείς τα discount από location.state
+                //if you come from createOrder you can respect the discount from location.state
                 const loc = location.state || {};
                 const discountPercent = loc.discountPercent ?? 0;
                 const discountAmount = loc.discountAmount ?? 0;
