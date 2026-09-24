@@ -1,4 +1,3 @@
-// src/Components/admin/SuperAdminSelectBusiness.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
@@ -30,7 +29,7 @@ const SuperAdminSelectBusiness = ({ userData, setUserData, onLogout }) => {
             setSaving(true);
             const token = localStorage.getItem('authToken');
 
-            // 1) switch business στο backend
+            //1) switch business στο backend
             const res = await fetch(`${API_BASE}/api/super-admin/select-business`, {
                 method: 'POST',
                 headers: {
@@ -46,7 +45,7 @@ const SuperAdminSelectBusiness = ({ userData, setUserData, onLogout }) => {
                 throw new Error('Failed to select business');
             }
 
-            // 2) φέρε user/dashboard data
+            //2) give user/dashboard data
             const meRes = await fetch(`${API_BASE}/api/dashboard`, {
                 method: 'GET',
                 headers: {
@@ -64,7 +63,7 @@ const SuperAdminSelectBusiness = ({ userData, setUserData, onLogout }) => {
 
             const updatedUser = {
                 userId: dashData.userId,
-                userName: userData.userName,        // κρατάμε το ίδιο name με το login
+                userName: userData.userName,        // keep same name with login
                 role: dashData.employeeType,
                 businessType: dashData.businessType,
                 superAdmin: dashData.superAdmin,
