@@ -81,7 +81,7 @@ const ManageIngredientCategories = ({ userData, onLogout }) => {
                 setModalOpen(true);
             })
             .catch(() => {
-                //if something goes wrong open modal only with category
+                //if something goes wrong open modal only with  category
                 setEditingCategory({
                     id: category.id,
                     name: category.name,
