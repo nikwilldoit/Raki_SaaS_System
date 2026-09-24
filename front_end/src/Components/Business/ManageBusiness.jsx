@@ -1,4 +1,3 @@
-// ManageBusiness.jsx
 import React, { useEffect, useState } from 'react';
 import './ManageBusiness.css';
 import Header from '../Header/Header';
@@ -149,7 +148,7 @@ const ManageBusiness = ({ userData, onLogout }) => {
                         />
                     </label>
 
-                    {/* Business Type κρυφό, δεν το δείχνεις */}
+                    {/* bussiness type is not public*/}
 
                     <label>
                         Phone
