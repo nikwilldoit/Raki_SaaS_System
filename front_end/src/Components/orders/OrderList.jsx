@@ -69,7 +69,7 @@ const OrderList = ({ userData, onLogout }) => {
     const handlePay = (orderId) => {
         navigate(`/orders/${orderId}/payment`, {
             state: {
-                // μπορείς να περάσεις businessId αν το χρειάζεσαι στο payment
+                //business id in payment if needed
                 businessId,
                 from: 'order-list',
             },
