@@ -1,4 +1,3 @@
-// src/Components/orders/OrderOverview.jsx
 import React, { useState, useEffect } from 'react';
 import './OrderOverview.css';
 import ProductOptions from './ProductOptions';
@@ -23,7 +22,7 @@ const OrderOverview = ({ userData, onLogout }) => {
 
     const businessId = userData?.businessId;
 
-    // Φέρε products από backend
+    //Show products from backend
     useEffect(() => {
         if (!businessId) return;
 
@@ -75,7 +74,7 @@ const OrderOverview = ({ userData, onLogout }) => {
         setOrderItems((prev) => [
             ...prev,
             {
-                id: Date.now(), // local row id
+                id: Date.now(), //local row id
                 productId: item.productId,
                 name: item.name,
                 size: item.size,
@@ -182,7 +181,7 @@ const OrderOverview = ({ userData, onLogout }) => {
                 return null;
             }
 
-            const body = await res.json(); // { order, items }
+            const body = await res.json(); //{ order, items }
             const orderId = body.order?.id;
             const backendItems = body.items || [];
 
@@ -230,7 +229,7 @@ const OrderOverview = ({ userData, onLogout }) => {
                 discountPercent: currentDiscountPercent,
                 discountAmount: currentDiscountAmount,
                 total: currentTotal,
-                // backendItems: έχουν πραγματικά orderItemId από DB
+                //backendItems: have orderItemId from DB
                 items: backendItems,
             },
         });
@@ -261,7 +260,7 @@ const OrderOverview = ({ userData, onLogout }) => {
             <Header userData={userData} onLogout={onLogout} />
 
             <div className="order-overview">
-                {/* Αριστερά: NEW ORDER */}
+                {/* Left: NEW ORDER */}
                 <div className="order-overview-left">
                     <div className="order-overview-header">
                         <h2>New order</h2>
@@ -306,7 +305,7 @@ const OrderOverview = ({ userData, onLogout }) => {
                     </div>
                 </div>
 
-                {/* Δεξιά: ORDER SUMMARY */}
+                {/* Right: ORDER SUMMARY */}
                 <div className="order-overview-right">
                     <div className="order-summary-header">
                         <h3>Order summary</h3>
