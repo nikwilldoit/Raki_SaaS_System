@@ -24,7 +24,7 @@ const DiscountForm = ({ userData, discount, onClose }) => {
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState('');
 
-    // Φόρτωση products + services
+    //Load products + services
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -38,7 +38,7 @@ const DiscountForm = ({ userData, discount, onClose }) => {
                     ),
                 ];
 
-                // services μόνο αν έχει νόημα
+                // services only if it has to
                 if (userData?.businessType === 'HAIRDRESSER') {
                     requests.push(
                         fetch(
@@ -58,7 +58,7 @@ const DiscountForm = ({ userData, discount, onClose }) => {
                 }
             } catch (err) {
                 console.error('Fetch products/services error:', err);
-                setError('Σφάλμα κατά τη φόρτωση προϊόντων/υπηρεσιών.');
+                setError('error loading products/services.');
             } finally {
                 setLoading(false);
             }
@@ -90,7 +90,7 @@ const DiscountForm = ({ userData, discount, onClose }) => {
             const payload = {
                 businessId: userData.businessId,
                 name,
-                scope, // PRODUCT / SERVICE / BOTH
+                scope, //PRODUCT / SERVICE / BOTH
                 discountType,
                 discountValue: Math.max(0, Number(value) || 0),
                 startDate: startDate || null,
@@ -151,7 +151,7 @@ const DiscountForm = ({ userData, discount, onClose }) => {
                     </div>
 
                     <div className="form-grid">
-                        {/* Αριστερή στήλη */}
+                        {/* Lest Column */}
                         <div className="left-column">
                             <div className="form-row">
                                 <label>Applies to</label>
@@ -201,7 +201,7 @@ const DiscountForm = ({ userData, discount, onClose }) => {
                             </div>
                         </div>
 
-                        {/* Δεξιά στήλη */}
+                        {/* Right Column */}
                         <div className="right-column">
                             {(scope === 'PRODUCT' || scope === 'BOTH') && (
                                 <div className="form-row">
