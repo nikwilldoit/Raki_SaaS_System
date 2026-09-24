@@ -4,7 +4,7 @@ import Header from "../../Header/Header";
 import ReservationEdit from "./ReservationEdit";
 import "./ReservationListPage.css"; 
 
-// --- HELPER FUNCTIONS ---
+//HELPER FUNCTIONS
 const formatDateTime = (dateStr) => {
   if (!dateStr) return "";
   try {
@@ -23,20 +23,20 @@ const formatDateTime = (dateStr) => {
 const ReservationListPage = ({ userData, onLogout }) => {
   const navigate = useNavigate();
   
-  // State to store the list of reservations
+  //State to store the list of reservations
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // --- NEW STATE FOR MODAL ---
+  //NEW STATE FOR MODAL
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingReservation, setEditingReservation] = useState(null);
 
-  // Helper to get token
+  //Helper to get token
   const getAuthToken = () =>
     localStorage.getItem("authToken") || userData?.token || "";
 
-  // --- FETCH DATA ---
+  //FETCH DATA
   useEffect(() => {
     const fetchReservations = async () => {
       const token = getAuthToken();
@@ -64,13 +64,13 @@ const ReservationListPage = ({ userData, onLogout }) => {
 
         if (response.ok) {
           const data = await response.json();
-          // Ensure we are setting an array (handle if backend wraps it in "data" object)
+          //Ensure we are setting an array (handle if backend wraps it in "data" object)
           const rawList = Array.isArray(data) ? data : data.data || [];
 
-          // We loop through the list and make sure every item has an 'id'
+          //We loop through the list and make sure every item has an 'id'
           const list = rawList.map((item) => ({
             ...item,
-            id: item.reservationId || item.id, // If reservationId exists, set it as id
+            id: item.reservationId || item.id, //If reservationId exists, set it as id
           }));
           
           setReservations(list);
@@ -89,13 +89,13 @@ const ReservationListPage = ({ userData, onLogout }) => {
     fetchReservations();
   }, [userData]);
 
-  // --- DELETE HANDLER ---
+  //DELETE HANDLER
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this reservation?")) return;
 
     try {
       const token = getAuthToken();
-      // Pass businessId as param for security
+      //Pass businessId as param for security
       const response = await fetch(
         `http://localhost:8080/api/reservations/${id}?businessId=${userData.businessId}`,
         {
@@ -105,7 +105,7 @@ const ReservationListPage = ({ userData, onLogout }) => {
       );
 
       if (response.ok) {
-        // Remove from list immediately (Optimistic UI update)
+        //Remove from list immediately (Optimistic UI update)
         setReservations((prev) => prev.filter((r) => r.id !== id));
       } else {
         alert("Failed to delete reservation.");
@@ -116,7 +116,7 @@ const ReservationListPage = ({ userData, onLogout }) => {
     }
   };
 
-  // --- EDIT HANDLERS ---
+  //EDIT HANDLERS
   const handleEditClick = (reservation) => {
     setEditingReservation(reservation);
     setIsEditModalOpen(true);
@@ -140,7 +140,7 @@ const ReservationListPage = ({ userData, onLogout }) => {
       });
 
       if (response.ok) {
-        // Update the list locally to reflect changes immediately
+        //Update the list locally to reflect changes immediately
         setReservations((prev) =>
           prev.map((r) => (r.id === id ? { ...r, ...updatedData } : r))
         );
