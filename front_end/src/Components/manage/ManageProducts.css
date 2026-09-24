@@ -174,7 +174,7 @@
     margin: 8px 0 12px;
     display: flex;
     flex-direction: column;
-    gap: 6px; /* κάθε group κάτω από το άλλο */
+    gap: 6px; /* every group in rows */
 }
 
 .selected-ingredients-group {
