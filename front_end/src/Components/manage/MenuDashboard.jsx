@@ -1,4 +1,3 @@
-// src/Components/manage/MenuDashboard.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MenuDashboard.css';
