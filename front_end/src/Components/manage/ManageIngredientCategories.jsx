@@ -1,4 +1,3 @@
-// src/Components/manage/ManageIngredientCategories.jsx
 import React, { useState, useEffect } from 'react';
 import './ManageIngredientCategories.css';
 import Header from "../Header/Header";
@@ -26,7 +25,7 @@ const ManageIngredientCategories = ({ userData, onLogout }) => {
     console.log('userData in ManageIngredientCategories', userData);
     console.log('businessId', businessId);
 
-    // ============= Load list from backend =============
+    //Load list from backend
     useEffect(() => {
         if (!businessId) return;
         const token = localStorage.getItem('authToken');
@@ -59,7 +58,7 @@ const ManageIngredientCategories = ({ userData, onLogout }) => {
         const token = localStorage.getItem('authToken');
         if (!token) return;
 
-        // Φέρε τα ingredients της κατηγορίας
+        //give the ingredients of the category
         fetch(
             `http://localhost:8080/api/menu/ingredient-categories/${category.id}/ingredients`,
             { headers: { Authorization: 'Bearer ' + token } }
@@ -82,7 +81,7 @@ const ManageIngredientCategories = ({ userData, onLogout }) => {
                 setModalOpen(true);
             })
             .catch(() => {
-                // αν κάτι πάει στραβά, άνοιξε modal μόνο με την κατηγορία
+                //if something goes wrong open modal only with category
                 setEditingCategory({
                     id: category.id,
                     name: category.name,
@@ -136,7 +135,7 @@ const ManageIngredientCategories = ({ userData, onLogout }) => {
         }));
     };
 
-    // ============= Save (POST / PUT) =============
+    //Save (POST / PUT)
     const handleSaveCategory = async () => {
         if (!businessId) {
             alert('Missing business id');
@@ -184,7 +183,7 @@ const ManageIngredientCategories = ({ userData, onLogout }) => {
                 return;
             }
 
-            // refetch without reload
+            //refetch without reload
             await fetch(
                 `http://localhost:8080/api/menu/ingredient-categories?businessId=${businessId}`,
                 { headers: { Authorization: 'Bearer ' + token } }
@@ -214,7 +213,7 @@ const ManageIngredientCategories = ({ userData, onLogout }) => {
         setDeleteModalOpen(true);
     };
 
-    // ============= Delete =============
+    //Delete
     const handleDeleteConfirmed = async () => {
         if (!categoryToDelete) return;
         const token = localStorage.getItem('authToken');
