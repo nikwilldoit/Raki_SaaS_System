@@ -23,7 +23,7 @@ const formatDateTime = (dateStr) => {
 const ReservationListPage = ({ userData, onLogout }) => {
   const navigate = useNavigate();
   
-  //State to store the list of reservations
+    //State to store the list of reservations
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
