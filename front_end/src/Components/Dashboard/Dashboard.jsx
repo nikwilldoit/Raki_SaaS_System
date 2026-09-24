@@ -1,4 +1,3 @@
-// Dashboard.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
@@ -12,7 +11,6 @@ const Dashboard = ({ userData, onLogout }) => {
         return null;
     }
 
-    //if he has no business send him to choose
     if (userData.role === 'SuperAdmin' && !userData.businessId) {
         navigate('/super-admin/select-business');
         return null;
@@ -20,8 +18,8 @@ const Dashboard = ({ userData, onLogout }) => {
 
     const {
         userName,
-        role,            // from employeeType in backend
-        businessType,    // from backend
+        role,            //from employeeType in backend
+        businessType,    //from backend
         superAdmin,
         businessId
     } = userData;
@@ -30,12 +28,12 @@ const Dashboard = ({ userData, onLogout }) => {
         navigate(path);
     };
 
-    // Role flags
+    //Role flags
     const isAdmin = superAdmin;
     const isManager = role === 'Owner';
     const isEmployee = role === 'Employee';
 
-    // Business type flags
+    //Business type flags
     const isFoodBusiness =
         businessType === 'RESTAURANT' ||
         businessType === 'CAFE' ||
@@ -46,7 +44,7 @@ const Dashboard = ({ userData, onLogout }) => {
         businessType === 'BARBERSHOP' ||
         businessType === 'SPA';
 
-    // Permissions
+    //Permissions
     const canSeeOrders = isFoodBusiness && (isEmployee || isAdmin || isManager);
     const canSeeReservations = isSalonBusiness && (isEmployee || isAdmin || isManager);
     const canCreateReservations = canSeeReservations;
