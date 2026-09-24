@@ -1,4 +1,3 @@
-// src/Components/payment/PaymentSplit.jsx
 import React, { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import './Payment.css';
@@ -10,7 +9,7 @@ const PaymentSplit = () => {
 
     const {
         mode,
-        items,       // backend items: {orderItemId, productId, quantity, ...}
+        items,       //backend items: {orderItemId, productId, quantity, ...}
         total,
         businessId,
         subtotal,
@@ -42,7 +41,7 @@ const PaymentSplit = () => {
                 quantity: qty,
                 productName: `Item #${it.productId}`,
                 description: `Qty: ${qty}`,
-                totalPrice: discountedLineTotal,           // ήδη με έκπτωση
+                totalPrice: discountedLineTotal,           //already with print
                 discountText:
                     safe(discountPercent) > 0
                         ? `${discountPercent}% off`
@@ -89,7 +88,7 @@ const PaymentSplit = () => {
             const payload = {
                 businessId,
                 orderId: Number(orderId),
-                totalAmount: totalThisPayment,        // ΠΡΟΪΟΝΤΑ (με έκπτωση) + TIP
+                totalAmount: totalThisPayment,        //Products (with discount) + TIP
                 totalTip: safe(tip),
                 paymentMethod: method,
                 split: mode === 'SPLIT',
@@ -101,7 +100,7 @@ const PaymentSplit = () => {
                         paymentMethod: method,
                         items: paidItems.map((it) => ({
                             orderItemId: it.orderItemId,
-                            amount: safe(it.totalPrice), // ήδη discounted
+                            amount: safe(it.totalPrice), //already discounted
                         })),
                     },
                 ],
