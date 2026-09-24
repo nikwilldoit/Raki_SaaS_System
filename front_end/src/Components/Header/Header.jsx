@@ -1,14 +1,13 @@
-// Header.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Header.css'; // Ensure the CSS for the header is available here
+import './Header.css'; //Ensure the CSS for the header is available here
 
 const Header = ({ userData, onLogout }) => {
     const {
         userName,
         role,
         businessType
-    } = userData || {}; // Safety check: defaults to empty object if userData is null
+    } = userData || {}; //Safety check: defaults to empty object if userData is null
 
     return (
         <header className="header">
