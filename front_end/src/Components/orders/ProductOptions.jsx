@@ -1,4 +1,3 @@
-// src/Components/orders/ProductOptions.jsx
 import React, { useState, useEffect, useMemo } from 'react';
 import './ProductOptions.css';
 
@@ -21,9 +20,9 @@ const ProductOptions = ({ productId, onAddToCart, onCancel }) => {
 
     const [product, setProduct] = useState(null);
 
-    // δυναμικές κατηγορίες από backend
-    const [categories, setCategories] = useState([]); // [{categoryId, categoryName, singleSelect, options: [{ingredientId,name,priceDelta}]}]
-    const [selected, setSelected] = useState({});     // { [categoryId]: [ingredientId,...] }
+    //dynamic categories from backend
+    const [categories, setCategories] = useState([]); //[{categoryId, categoryName, singleSelect, options: [{ingredientId,name,priceDelta}]}]
+    const [selected, setSelected] = useState({});     //{ [categoryId]: [ingredientId,...] }
 
     const [specialRequest, setSpecialRequest] = useState('');
     const [quantity, setQuantity] = useState(1);
@@ -32,7 +31,7 @@ const ProductOptions = ({ productId, onAddToCart, onCancel }) => {
         const token = localStorage.getItem('authToken');
         if (!productId || !token) return;
 
-        // 1) Βασικό product
+        //1) Basic product
         fetch(`http://localhost:8080/api/products/${productId}`, {
             headers: { Authorization: 'Bearer ' + token },
         })
@@ -55,7 +54,7 @@ const ProductOptions = ({ productId, onAddToCart, onCancel }) => {
             })
             .catch((err) => console.error('Failed to load product', err));
 
-        // 2) Categories + options για το συγκεκριμένο product
+        //2) Categories + options for this specific product
         fetch(`http://localhost:8080/api/products/${productId}/extras`, {
             headers: { Authorization: 'Bearer ' + token },
         })
