@@ -73,7 +73,7 @@ export default function ManageTaxPolicies({ userData, onLogout }) {
     return (
         <div className="tax-page">
 
-            {/* ✅ Header όπως στο MenuDashboard */}
+            {/* Header the same as MenuDashboard */}
             <Header userData={userData} onLogout={onLogout} />
 
             {/* Title Area */}
