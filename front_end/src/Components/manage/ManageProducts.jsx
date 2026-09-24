@@ -1,4 +1,3 @@
-// src/Components/manage/ManageProducts.jsx
 import React, { useState, useEffect } from 'react';
 import './ManageProducts.css';
 import Header from '../Header/Header';
@@ -10,7 +9,7 @@ const emptyProduct = {
     taxCategoryId: '',
     productTypeId: '',
     ingredientCategoryId: '',
-    // Κρατάμε πλήρη objects: { ingredientId, ingredientName, categoryId }
+    //keep full objects: { ingredientId, ingredientName, categoryId }
     ingredients: [],
     price: '',
     status: 'ACTIVE',
@@ -28,7 +27,7 @@ const ManageProducts = ({ userData, onLogout }) => {
     const [editingProduct, setEditingProduct] = useState(emptyProduct);
     const [productToDelete, setProductToDelete] = useState(null);
 
-    // dropdown data
+    //dropdown data
     const [taxCategories, setTaxCategories] = useState([]);
     const [productTypes, setProductTypes] = useState([]);
     const [ingredientCategories, setIngredientCategories] = useState([]);
@@ -42,7 +41,7 @@ const ManageProducts = ({ userData, onLogout }) => {
         const token = localStorage.getItem('authToken');
         if (!token) return;
 
-        // 1) Products
+        //1) Products
         fetch(`http://localhost:8080/api/products?businessId=${businessId}`, {
             headers: { Authorization: 'Bearer ' + token },
         })
@@ -65,7 +64,7 @@ const ManageProducts = ({ userData, onLogout }) => {
             })
             .catch((err) => console.error('Failed to load products', err));
 
-        // 2) Tax categories
+        //2) Tax categories
         fetch('http://localhost:8080/api/taxes', {
             headers: { Authorization: 'Bearer ' + token },
         })
@@ -76,7 +75,7 @@ const ManageProducts = ({ userData, onLogout }) => {
             })
             .catch(() => setTaxCategories([]));
 
-        // 3) Product types
+        //3) Product types
         fetch('http://localhost:8080/api/product-types', {
             headers: { Authorization: 'Bearer ' + token },
         })
@@ -87,7 +86,7 @@ const ManageProducts = ({ userData, onLogout }) => {
             })
             .catch(() => setProductTypes([]));
 
-        // 4) Ingredient categories
+        //4) Ingredient categories
         fetch(
             `http://localhost:8080/api/menu/ingredient-categories?businessId=${businessId}`,
             { headers: { Authorization: 'Bearer ' + token } },
@@ -112,7 +111,7 @@ const ManageProducts = ({ userData, onLogout }) => {
     };
 
     const openEditModal = (product) => {
-        // Αν θες να φορτώνεις ήδη αποθηκευμένα ingredients, εδώ θα κάνεις fetch
+        //if you want the already loades ingredients here you do fetch
         setEditingProduct({
             id: product.id,
             name: product.name,
@@ -178,7 +177,7 @@ const ManageProducts = ({ userData, onLogout }) => {
             .catch(() => setIngredientsForSelectedCategory([]));
     };
 
-    // toggle με πλήρες object, για να ξέρουμε categoryId & name
+    // toggle with full object, to know categoryId & name
     const toggleIngredientSelection = (ingredient) => {
         setEditingProduct((prev) => {
             const exists = prev.ingredients.some(
@@ -227,7 +226,7 @@ const ManageProducts = ({ userData, onLogout }) => {
             basePrice: Math.max(0, Number(editingProduct.price) || 0),
             type: 'PRODUCT',
             status: editingProduct.status,
-            // μόνο τα IDs πάνε στο backend
+            //only IDs goes to backend
             ingredientIds: (editingProduct.ingredients || []).map(
                 (it) => it.ingredientId,
             ),
@@ -516,7 +515,7 @@ const ManageProducts = ({ userData, onLogout }) => {
                             </select>
                         </label>
 
-                        {/* Εμφάνιση ΟΛΩΝ των επιλεγμένων ανά κατηγορία */}
+                        {/* Showing of all the selected from every category */}
                         {editingProduct.ingredients.length > 0 && (
                             <div className="selected-ingredients-groups">
                                 {ingredientCategories.map((cat) => {
