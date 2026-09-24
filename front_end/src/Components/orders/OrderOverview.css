@@ -1,4 +1,3 @@
-/* src/Components/orders/OrderOverview.css */
 
 .order-overview {
     max-width: 1200px;
@@ -31,15 +30,13 @@
     gap: 12px;
 }
 
-/* wrapper της σελίδας orders */
+/* wrapper of page orders */
 .orders-page {
     min-height: 100vh;
     padding: 24px 32px 40px;
     box-sizing: border-box;
     background: linear-gradient(135deg, #2a0a73, #17004c);
 }
-
-/* το .order-overview ήδη ορίζει δύο στήλες (left/right) και max-width */
 
 
 .order-overview-header h2 {
