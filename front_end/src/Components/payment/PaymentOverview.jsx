@@ -1,4 +1,3 @@
-// src/Components/payment/PaymentOverview.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Payment.css';
@@ -13,17 +12,17 @@ const PaymentOverview = () => {
             try {
                 const token = localStorage.getItem('authToken');
 
-                // Φέρε order + items
+                //Bring order + items
                 const orderRes = await fetch(
                     `http://localhost:8080/api/orders/${orderId}`,
                     { headers: { Authorization: 'Bearer ' + token } }
                 );
                 if (orderRes.ok) {
-                    const dto = await orderRes.json(); // {order, items}
+                    const dto = await orderRes.json(); //{order, items}
                     setOrder(dto);
                 }
 
-                // Φέρε payments
+                //Bring payments
                 const payRes = await fetch(
                     `http://localhost:8080/api/orders/${orderId}/payments`,
                     { headers: { Authorization: 'Bearer ' + token } }
