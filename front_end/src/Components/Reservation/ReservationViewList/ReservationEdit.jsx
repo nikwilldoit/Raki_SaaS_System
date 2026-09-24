@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./ReservationEdit.css"; 
 
 const ReservationEdit = ({ reservation, isOpen, onClose, onSave }) => {
-  // Initialize form with reservation data
+  //Initialize form with reservation data
   const [formData, setFormData] = useState({
     customerName: "",
     customerPhone: "",
     status: "PENDING",
   });
 
-  // Update form when reservation changes
+  //Update form when reservation changes
   useEffect(() => {
     if (reservation) {
       setFormData({
@@ -28,7 +28,7 @@ const ReservationEdit = ({ reservation, isOpen, onClose, onSave }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Pass the ID and the new data back to the parent
+    //Pass the ID and the new data back to the parent
     onSave(reservation.id, formData);
   };
 
