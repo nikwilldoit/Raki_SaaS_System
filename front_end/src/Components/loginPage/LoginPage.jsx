@@ -1,4 +1,3 @@
-// LoginPage.jsx
 import React, { useState } from "react";
 import "./LoginPage.css";
 import email_photo from "../Assets/email.png";
@@ -22,7 +21,7 @@ const LoginPage = ({ onLogin }) => {
         setError('');
 
         try {
-            // 1) LOGIN
+            //1) LOGIN
             const response = await fetch('http://localhost:8080/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -38,10 +37,10 @@ const LoginPage = ({ onLogin }) => {
                 return;
             }
 
-            // Save token
+            //Save token
             localStorage.setItem('authToken', data.token);
 
-            // 2) FETCH DASHBOARD INFO
+            //2) FETCH DASHBOARD INFO
             const dashResp = await fetch('http://localhost:8080/api/dashboard', {
                 method: 'GET',
                 headers: { Authorization: 'Bearer ' + data.token },
@@ -55,17 +54,17 @@ const LoginPage = ({ onLogin }) => {
                 return;
             }
 
-            // 3) Construct final user object
+            //3) Construct final user object
             const userData = {
                 userId: dashData.userId,
-                userName: data.username,          // από login
-                role: dashData.employeeType,      // από dashboard
+                userName: data.username,          //from login
+                role: dashData.employeeType,      //from dashboard
                 businessType: dashData.businessType,
                 superAdmin: dashData.superAdmin,
-                businessId: dashData.businessId,  // ΠΡΟΣΟΧΗ: από dashboard
+                businessId: dashData.businessId,  //from dashboard
             };
 
-            // 4) Save to storage & lift state
+            //4) Save to storage & lift state
             localStorage.setItem('user', JSON.stringify(userData));
             if (onLogin) onLogin(userData);
         } catch (err) {
