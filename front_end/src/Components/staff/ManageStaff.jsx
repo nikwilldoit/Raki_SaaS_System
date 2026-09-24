@@ -9,7 +9,7 @@ const ManageStaff = ({ userData, onLogout }) => {
     const [staff, setStaff] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [editing, setEditing] = useState(null); // staff member
+    const [editing, setEditing] = useState(null); //staff member
     const [showForm, setShowForm] = useState(false);
 
     const fetchStaff = async () => {
