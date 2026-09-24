@@ -4,7 +4,7 @@ import "./ReservationCreatePage.css";
 import CalendarPicker from "./CalendarPicker";
 import Header from "../../Header/Header";
 
-// --- HELPER FUNCTIONS ---
+//HELPER FUNCTIONS
 const formatReadableDate = (dateStr) => {
   if (!dateStr) return "";
   try {
@@ -44,7 +44,7 @@ const formatDuration = (minutes) => {
 
 const emptyCustomerInfo = { name: "", phone: "", email: "" };
 
-// --- MAIN COMPONENT ---
+//MAIN COMPONENT
 const ReservationCreatePage = ({
   onBack,
   onNext,
@@ -54,31 +54,31 @@ const ReservationCreatePage = ({
 }) => {
   const navigate = useNavigate();
 
-  // --- STATE ---
+  //STATE
   const [customerInfo, setCustomerInfo] = useState(emptyCustomerInfo);
   
-  // Data lists
+  //Data lists
   const [services, setServices] = useState([]);
   const [employees, setEmployees] = useState([]);
   
-  // Selections
+  //Selections
   const [selectedServiceId, setSelectedServiceId] = useState(null);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10));
   const [selectedTime, setSelectedTime] = useState("");
   
-  // Calculated Data
+  //Calculated Data
   const [availableTimeslots, setAvailableTimeslots] = useState([]);
   
-  // UI State
+  //UI State
   const [employeeOffset, setEmployeeOffset] = useState(0);
   const [serviceOffset, setServiceOffset] = useState(0);
   
-  // Status
+  //Status
   const [loadingMeta, setLoadingMeta] = useState(false);
   const [loadingAvailability, setLoadingAvailability] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({
-    status: "idle", // 'idle', 'submitting', 'success', 'error'
+    status: "idle", //'idle', 'submitting', 'success', 'error'
     message: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
@@ -91,7 +91,7 @@ const ReservationCreatePage = ({
   const getAuthToken = () =>
     localStorage.getItem("authToken") || userData?.token || "";
 
-  // --- MEMOS ---
+  //MEMOS
   const selectedService = useMemo(
     () => services.find((service) => service.id === selectedServiceId),
     [services, selectedServiceId]
@@ -105,11 +105,11 @@ const ReservationCreatePage = ({
   const hasEmployeeSelection =
     selectedEmployeeId !== null && selectedEmployeeId !== undefined;
 
-  // --- CHECK SUCCESS STATE ---
-  // This is the variable we use to toggle the views
+  //CHECK SUCCESS STATE
+  //This is the variable we use to toggle the views
   const isSuccess = submitStatus.status === "success";
 
-  // --- EFFECTS ---
+  //EFFECTS
   useEffect(() => {
     const token = getAuthToken();
     if (!token) {
@@ -167,7 +167,7 @@ const ReservationCreatePage = ({
         setServices(serviceList);
         setEmployees(employeesWithAny);
         
-        // Auto-select "Any" if available and nothing else selected
+        //Auto-select "Any" if available and nothing else selected
         setSelectedEmployeeId((prev) =>
           prev === null || prev === undefined
             ? employeesWithAny[0]?.id ?? null
@@ -184,14 +184,14 @@ const ReservationCreatePage = ({
     fetchMetadata();
   }, [userData]);
 
-  // Reset time when service changes
+  //Reset time when service changes
   useEffect(() => {
     setSelectedDate("");
     setSelectedTime("");
     setAvailableTimeslots([]);
   }, [selectedServiceId]);
 
-  // Fetch Availability
+  //Fetch Availability
   useEffect(() => {
     const token = getAuthToken();
     if (!token) return;
@@ -252,7 +252,7 @@ const ReservationCreatePage = ({
     return () => controller.abort();
   }, [selectedDate, selectedEmployeeId, selectedServiceId, userData]);
 
-  // --- VALIDATION & HELPERS ---
+  //VALIDATION & HELPERS
   const customerComplete =
     customerInfo.name && (customerInfo.phone || customerInfo.email);
   const serviceEmployeeComplete = Boolean(selectedService) && hasEmployeeSelection;
@@ -355,8 +355,8 @@ const ReservationCreatePage = ({
           status: "success",
           message: "Reservation created successfully!",
         });
-        // We do NOT call onNext here automatically anymore, 
-        // because we want to show the Summary View within this component.
+        //We do NOT call onNext here automatically anymore, 
+        //because we want to show the Summary View within this component.
       } else {
         const errorText = await response.text();
         setSubmitStatus({
